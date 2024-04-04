@@ -24,7 +24,7 @@ class _leaveApplyState extends State<leaveApply> {
             height: MediaQuery.of(context).size.height / 1.32,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
-                itemCount: 1,
+                itemCount: 3,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -367,5 +367,4 @@ class _leaveApplyState extends State<leaveApply> {
       ),
     );
   }
-
 }

@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+var categorycontroller = TextEditingController();
+var StartingDateController = TextEditingController();
+var StartingTimeController = TextEditingController();
+var EndDateController = TextEditingController();
+var EndTimeController = TextEditingController();
+var Reasoncontroller = TextEditingController();
+DateTime selectedDate = DateTime.now();
+
+Future<void> _selectDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101));
+  if (picked != null && picked != selectedDate) {
+    selectedDate = picked;
+  }
+}
+
 var category = ["Sick", "Casual", "etc"];
 Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
   return showDialog(
@@ -30,6 +49,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButtonFormField(
+                        
                         decoration: InputDecoration(
                             hintText: "Category",
                             hintStyle: GoogleFonts.rajdhani(
@@ -46,10 +66,12 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(
+                      child: TextField(controller: StartingDateController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _selectDate(context);
+                                },
                                 icon: Icon(Icons.calendar_month_outlined)),
                             hintText: "Starting Date",
                             hintStyle: GoogleFonts.rajdhani(
@@ -59,7 +81,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(
+                      child: TextField(controller: StartingTimeController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {},
@@ -72,10 +94,12 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(
+                      child: TextField(controller: EndDateController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _selectDate(context);
+                                },
                                 icon: Icon(Icons.calendar_month_outlined)),
                             hintText: "End Date",
                             hintStyle: GoogleFonts.rajdhani(
@@ -85,7 +109,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(
+                      child: TextField(controller: EndTimeController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {},
@@ -98,7 +122,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(
+                      child: TextField(controller: Reasoncontroller,
                         keyboardType: TextInputType.multiline,
                         maxLines: 4,
                         minLines: 1,
