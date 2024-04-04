@@ -89,7 +89,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.calendar_month_outlined)),
+                                icon: Icon(Icons.timer_outlined)),
                             hintText: "End Time",
                             hintStyle: GoogleFonts.rajdhani(
                                 fontWeight: FontWeight.bold),
@@ -127,7 +127,8 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                         child: Center(
                             child: Text(
                           "Submit",
-                          style: TextStyle(fontSize: 20,
+                          style: TextStyle(
+                            fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),

@@ -1,7 +1,7 @@
-import 'package:edumeet_project_irohub/leave/AssingnedLeave.dart';
 import 'package:edumeet_project_irohub/Event.dart';
-import 'package:edumeet_project_irohub/leave/LeaveApplication.dart';
-import 'package:edumeet_project_irohub/leave/LeaveApplly.dart';
+import 'package:edumeet_project_irohub/LEAVEPAGE%20operations/LeaveApplication.dart';
+
+import 'package:edumeet_project_irohub/LEAVEPAGE%20operations/LeaveApplly.dart';
 import 'package:edumeet_project_irohub/MyDiary.dart';
 import 'package:edumeet_project_irohub/MyProfile.dart';
 import 'package:edumeet_project_irohub/StaffDirectory.dart';
@@ -147,22 +147,18 @@ class drawerwidget extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => leaveApply()
-                                //  LeaveApplication(
-                                //   Selectpage: 0,
-                                // ),
-                                ));
+                              builder: (context) =>
+                                  LeaveApplication(SelectPage: 0),
+                            ));
                       },
                       child: textwidget(title: "Assigned Leave")),
                   GestureDetector(
                       onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => leaveApply()
-                                // LeaveApplication(
-                                //   Selectpage: ,
-                                // ),
-                                ));
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    LeaveApplication(SelectPage: 1)));
                       },
                       child: textwidget(title: "Leave Apply"))
                 ],

@@ -1,4 +1,4 @@
-import 'package:edumeet_project_irohub/leave/AssingnedLeave.dart';
+import 'package:edumeet_project_irohub/LEAVEPAGE%20operations/AssingnedLeave.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +17,25 @@ class LeaveApplication extends StatefulWidget {
 class _LeaveApplicationState extends State<LeaveApplication>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  final List<String> titleLists = [" Assinged Leave ", "Leave Aplly"];
+  late String currentTitle;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    currentTitle = titleLists[0];
+    tabController =
+        TabController(initialIndex: widget.SelectPage, length: 2, vsync: this);
+
+    tabController.addListener(changeTitle);
+  }
+
+  void changeTitle() {
+    setState(() {
+      currentTitle = titleLists[tabController.index];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +63,7 @@ class _LeaveApplicationState extends State<LeaveApplication>
         ],
         backgroundColor: Color.fromARGB(255, 255, 17, 0),
         bottom: TabBar(
+            controller: tabController,
             indicatorWeight: 05,
             indicatorColor: Colors.white,
             indicatorSize: TabBarIndicatorSize.tab,
@@ -72,7 +92,8 @@ class _LeaveApplicationState extends State<LeaveApplication>
               )
             ]),
       ),
-      body: TabBarView(children: [Asssingdleave(), leaveApply()]),
+      body: TabBarView(
+          controller: tabController, children: [Asssingdleave(), leaveApply()]),
     );
   }
 }
