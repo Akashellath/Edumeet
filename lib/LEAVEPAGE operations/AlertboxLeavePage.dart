@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 var categorycontroller = TextEditingController();
 var StartingDateController = TextEditingController();
@@ -7,18 +8,81 @@ var StartingTimeController = TextEditingController();
 var EndDateController = TextEditingController();
 var EndTimeController = TextEditingController();
 var Reasoncontroller = TextEditingController();
-// Date/Time Picker operations
-DateTime selectedDate = DateTime.now();
-Future<void> selectDate(BuildContext context) async {
+//
+// DATE/TIME Picker operations
+//
+//  Starting Date operation
+//
+
+DateTime selectedStartDate = DateTime.now();
+Future<void> selectStartDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: selectedStartDate,
       firstDate: DateTime(2015, 8),
       lastDate: DateTime(2101));
-  if (picked != null && picked != selectedDate) {
-    selectedDate = picked;
+  if (picked != null && picked != selectedStartDate) {
+    selectedStartDate = picked;
+    StartingDateController.text = selectedStartDate.toString();
   }
 }
+
+//
+// END Date operation
+//
+DateTime selectedEndDate = DateTime.now();
+Future<void> selectEndDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedEndDate,
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101));
+  if (picked != null && picked != selectedEndDate) {
+    selectedEndDate = picked;
+    EndDateController.text = selectedEndDate.toString();
+  }
+}
+
+// TIME PICKER
+//
+// Start Time Operation
+//
+TimeOfDay selectedStartTime = TimeOfDay.now();
+Future<void> selectStartTime(BuildContext context) async {
+  final TimeOfDay? picked_s = await showTimePicker(
+      context: context,
+      initialTime: selectedStartTime,
+      builder: (BuildContext context, Widget? child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+          child: child!,
+        );
+      });
+  if (picked_s != null && picked_s != selectedStartTime)
+    selectedStartTime = picked_s;
+  StartingTimeController.text = selectedStartTime.toString();
+}
+
+//
+// End Time Operation
+//
+TimeOfDay selectedEndTime = TimeOfDay.now();
+Future<void> selectEndTime(BuildContext context) async {
+  final TimeOfDay? picked_s = await showTimePicker(
+      context: context,
+      initialTime: selectedEndTime,
+      builder: (BuildContext context, Widget? child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+          child: child!,
+        );
+      });
+  if (picked_s != null && picked_s != selectedEndTime)
+    selectedEndTime = picked_s;
+  EndTimeController.text = selectedEndTime.toString();
+}
+// 
+// END OF DATE TIME SESSION
 
 var category = ["Sick", "Casual", "etc"];
 Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
@@ -70,7 +134,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  selectDate(context);
+                                  selectStartDate(context);
                                 },
                                 icon: Icon(Icons.calendar_month_outlined)),
                             hintText: "Starting Date",
@@ -85,7 +149,9 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                         controller: StartingTimeController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  selectStartTime(context);
+                                },
                                 icon: Icon(Icons.timer_outlined)),
                             hintText: "Starting Time",
                             hintStyle: GoogleFonts.rajdhani(
@@ -100,7 +166,7 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  selectDate(context);
+                                  selectEndDate(context);
                                   // print("llllllllllllllllll");
                                 },
                                 icon: Icon(Icons.calendar_month_outlined)),
@@ -116,7 +182,9 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                         controller: EndTimeController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  selectEndTime(context);
+                                },
                                 icon: Icon(Icons.timer_outlined)),
                             hintText: "End Time",
                             hintStyle: GoogleFonts.rajdhani(
