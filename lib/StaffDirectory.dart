@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StaffDirectory extends StatefulWidget {
-  const StaffDirectory({super.key});
+  StaffDirectory({super.key});
 
+  var subjects = [
+    "Mathematics",
+    "English",
+    "Physics",
+    "Chemistry",
+    "Biology",
+  ];
+  var Teachers = ["Anil", "Akash", "Rahul", "Kripa Anil", "Susmitha Sreemathi"];
   @override
   State<StaffDirectory> createState() => _StaffDirectoryState();
 }
@@ -33,8 +41,7 @@ class _StaffDirectoryState extends State<StaffDirectory> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: Color.fromARGB(255, 234, 234, 234
-          ),
+          color: Color.fromARGB(255, 234, 234, 234),
           child: Column(
             children: [
               Padding(
@@ -90,7 +97,7 @@ class _StaffDirectoryState extends State<StaffDirectory> {
                                                   255, 58, 58, 58),
                                               fontSize: 19,
                                               fontWeight: FontWeight.bold)),
-                                      Text(" Mathematics",
+                                      Text(widget.subjects[index],
                                           style: GoogleFonts.rajdhani(
                                               color: Color.fromARGB(
                                                   255, 58, 58, 58),
@@ -109,7 +116,7 @@ class _StaffDirectoryState extends State<StaffDirectory> {
                                                   255, 58, 58, 58),
                                               fontSize: 19,
                                               fontWeight: FontWeight.bold)),
-                                      Text(" Anil",
+                                      Text(widget.Teachers[index],
                                           style: GoogleFonts.rajdhani(
                                               color: Color.fromARGB(
                                                   255, 58, 58, 58),
@@ -124,7 +131,7 @@ class _StaffDirectoryState extends State<StaffDirectory> {
                         ),
                       ),
                     ),
-                    itemCount: 5,
+                    itemCount: widget.subjects.length,
                   ))
 
               //

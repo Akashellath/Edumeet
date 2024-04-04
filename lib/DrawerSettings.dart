@@ -1,15 +1,19 @@
+import 'package:edumeet_project_irohub/leave/AssingnedLeave.dart';
 import 'package:edumeet_project_irohub/Event.dart';
-import 'package:edumeet_project_irohub/LeaveApplication.dart';
-import 'package:edumeet_project_irohub/LeaveApplly.dart';
+import 'package:edumeet_project_irohub/leave/LeaveApplication.dart';
+import 'package:edumeet_project_irohub/leave/LeaveApplly.dart';
 import 'package:edumeet_project_irohub/MyDiary.dart';
 import 'package:edumeet_project_irohub/MyProfile.dart';
 import 'package:edumeet_project_irohub/StaffDirectory.dart';
 import 'package:edumeet_project_irohub/SubjectPage.dart';
+import 'package:edumeet_project_irohub/TimetablePage.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+//  All drawer control and settings are in this page
 
 class drawerwidget extends StatelessWidget {
   const drawerwidget({
@@ -125,8 +129,8 @@ class drawerwidget extends StatelessWidget {
                         ));
                   },
                   child: textwidget(title: "Staff Directory")),
-              GestureDetector(
-                  onTap: () {}, child: textwidget(title: "Calender")),
+              // GestureDetector(
+              //     onTap: () {}, child: textwidget(title: "Calender"))  padikk padikk :)),
               ExpansionTile(
                 title: Text("Leave Application",
                     style: GoogleFonts.rajdhani(
@@ -143,17 +147,22 @@ class drawerwidget extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LeaveApplication(),
-                            ));
+                                builder: (context) => leaveApply()
+                                //  LeaveApplication(
+                                //   Selectpage: 0,
+                                // ),
+                                ));
                       },
                       child: textwidget(title: "Assigned Leave")),
                   GestureDetector(
                       onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => leaveApply(),
-                            ));
+                            MaterialPageRoute(builder: (context) => leaveApply()
+                                // LeaveApplication(
+                                //   Selectpage: ,
+                                // ),
+                                ));
                       },
                       child: textwidget(title: "Leave Apply"))
                 ],
@@ -172,18 +181,18 @@ class drawerwidget extends StatelessWidget {
                     fontSize: 22, fontWeight: FontWeight.w500)),
             trailing: Icon(Icons.keyboard_arrow_down_outlined),
             children: [
-              GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => Myprofile(),
-                  //     ));
-                },
-                child: textwidget(
-                  title: "Assingment",
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     // Navigator.push(
+              //     //     context,
+              //     //     MaterialPageRoute(
+              //     //       builder: (context) => Myprofile(),
+              //     //     ));
+              //   },
+              //   child: textwidget(
+              //     title: "Assingment",
+              //   ),
+              // ),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -195,15 +204,15 @@ class drawerwidget extends StatelessWidget {
                   child: textwidget(title: "Subject")),
               GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => StaffDirectory(),
-                    //     ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Timetable(),
+                        ));
                   },
                   child: textwidget(title: "TimeTable")),
-              GestureDetector(
-                  onTap: () {}, child: textwidget(title: "Attendance")),
+              // GestureDetector(
+              //     onTap: () {}, child: textwidget(title: "Attendance")),
               GestureDetector(
                   onTap: () {
                     Navigator.push(

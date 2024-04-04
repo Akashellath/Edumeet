@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:edumeet_project_irohub/chatPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Myprofile extends StatefulWidget {
   const Myprofile({super.key});
@@ -12,6 +15,54 @@ class Myprofile extends StatefulWidget {
 }
 
 class _MyprofileState extends State<Myprofile> {
+
+  // PROFILE IMAGE PICKER 
+  File? _profileImage;
+
+  Future<void> _pickProfileImage() async {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.photo),
+                title: Text('Choose from Gallery'),
+                onTap: () {
+                  _getImage(ImageSource.gallery);
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.camera),
+                title: Text('Take a Photo'),
+                onTap: () {
+                  _getImage(ImageSource.camera);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _getImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+  // END OF IMAGE PICKER FUNCTION
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,24 +132,35 @@ class _MyprofileState extends State<Myprofile> {
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 63,
-                          child: CircleAvatar(
-                            backgroundColor:
-                                const Color.fromARGB(255, 255, 17, 0),
-                            radius: 55,
-                            backgroundImage:
-                                AssetImage("Asset/FB_IMG_1659716185316.jpg"),
+                          child: GestureDetector(
+                            onTap: _pickProfileImage,
+                            child: _profileImage == null
+                                ? CircleAvatar(
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 255, 17, 0),
+                                    radius: 55,
+                                    backgroundImage: AssetImage(
+                                        "Asset/FB_IMG_1659716185316.jpg"),
+                                  )
+                                : CircleAvatar(
+                                    radius: 55,
+                                    backgroundImage: FileImage(_profileImage!),
+                                  ),
                           ),
                         )),
                     Positioned(
                         top: MediaQuery.of(context).size.height / 8.5,
                         width: MediaQuery.of(context).size.width / .83,
-                        child: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                          child: Icon(
-                            Icons.image,
-                            size: 35,
-                            color: Color.fromARGB(255, 166, 166, 166),
+                        child: GestureDetector(
+                          onTap: _pickProfileImage,
+                          child: CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                            child: Icon(
+                              Icons.image,
+                              size: 35,
+                              color: Color.fromARGB(255, 166, 166, 166),
+                            ),
                           ),
                         ))
                   ],
@@ -119,7 +181,82 @@ class _MyprofileState extends State<Myprofile> {
                   ),
                   IconButton(
                     onPressed: () {
-                      PofileNameAlertBox(context);
+                      showModalBottomSheet(
+                        context: context,
+                        // color is applied to main screen when modal bottom screen is displayed
+                        // barrierColor: Colors.greenAccent,
+                        //background color for modal bottom screen
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255),
+                        //elevates modal bottom screen
+                        elevation: 10,
+                        // gives rounded corner to modal bottom screen
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        builder: (BuildContext context) {
+                          // UDE : SizedBox instead of Container for whitespaces
+                          return SizedBox(
+                            height: MediaQuery.of(context).size.height / 2.2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        hintText: "First Name",
+                                        hintStyle: GoogleFonts.rajdhani(
+                                            fontWeight: FontWeight.bold),
+                                        border: OutlineInputBorder()),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        hintText: "Middle Name",
+                                        hintStyle: GoogleFonts.rajdhani(
+                                            fontWeight: FontWeight.bold),
+                                        border: OutlineInputBorder()),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        hintText: "Last Name",
+                                        hintStyle: GoogleFonts.rajdhani(
+                                            fontWeight: FontWeight.bold),
+                                        border: OutlineInputBorder()),
+                                  ),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 70,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 255, 17, 0),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(
+                                          "Save",
+                                          style: GoogleFonts.rajdhani(
+                                            color: Colors.white,
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ))
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     },
                     icon: Icon(Icons.edit),
                   )
@@ -717,55 +854,5 @@ class _MyprofileState extends State<Myprofile> {
         ),
       ),
     );
-  }
-
-  Future<dynamic> PofileNameAlertBox(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (alert) => AlertDialog(
-              insetPadding: EdgeInsets.zero,
-              content: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: "First Name",
-                            hintStyle: GoogleFonts.rajdhani(
-                                fontWeight: FontWeight.bold),
-                            border: OutlineInputBorder()),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: "Middile Name",
-                            hintStyle: GoogleFonts.rajdhani(
-                                fontWeight: FontWeight.bold),
-                            border: OutlineInputBorder()),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: "Last name ",
-                            hintStyle: GoogleFonts.rajdhani(
-                                fontWeight: FontWeight.bold),
-                            border: OutlineInputBorder()),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container( height: 60,width: double.infinity,decoration: BoxDecoration(color: Colors.grey),),
-                    )
-                  ],
-                ),
-              ),
-              actions: [],
-            ));
   }
 }

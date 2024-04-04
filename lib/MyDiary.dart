@@ -61,8 +61,6 @@ class _DiaryPageState extends State<DiaryPage> {
                 ),
               )
             ]),
-
-            
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -74,11 +72,16 @@ class _DiaryPageState extends State<DiaryPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Add Diaries +",
-                        style: GoogleFonts.rajdhani(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold))
+                    GestureDetector(
+                      onTap: () {
+                        DiaryPageAlertBox(context);
+                      },
+                      child: Text("Add Diaries +",
+                          style: GoogleFonts.rajdhani(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                    )
                   ],
                 ),
               ),
@@ -238,5 +241,48 @@ class _DiaryPageState extends State<DiaryPage> {
             ],
           ),
         ));
+  }
+
+  Future<dynamic> DiaryPageAlertBox(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (alert) => AlertDialog(
+              title: Row(
+                children: [
+                  Text("Add Diaries"),
+                  Spacer(),
+                  IconButton(onPressed: () {   Navigator.pop(context);}, icon: Icon(Icons.close))
+                ],
+              ),
+              //  insetPadding: EdgeInsets.zero,
+              content: Container(
+                height: 300,
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.date_range_outlined),
+                            hintText: "Enter Date",
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 6,
+                        minLines: 1,
+                        decoration: InputDecoration(
+                            hintText: "Enter Note",
+                            border: OutlineInputBorder()),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ));
   }
 }
