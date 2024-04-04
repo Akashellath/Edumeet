@@ -7,9 +7,9 @@ var StartingTimeController = TextEditingController();
 var EndDateController = TextEditingController();
 var EndTimeController = TextEditingController();
 var Reasoncontroller = TextEditingController();
+// Date/Time Picker operations
 DateTime selectedDate = DateTime.now();
-
-Future<void> _selectDate(BuildContext context) async {
+Future<void> selectDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
@@ -49,7 +49,6 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: DropdownButtonFormField(
-                        
                         decoration: InputDecoration(
                             hintText: "Category",
                             hintStyle: GoogleFonts.rajdhani(
@@ -60,17 +59,18 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                               value: category, child: Text(category));
                         }).toList(),
                         onChanged: (String? newValue) {
-                          // do other stuff with _category
+                          // do other stuff with category
                         },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(controller: StartingDateController,
+                      child: TextField(
+                        controller: StartingDateController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  _selectDate(context);
+                                  selectDate(context);
                                 },
                                 icon: Icon(Icons.calendar_month_outlined)),
                             hintText: "Starting Date",
@@ -81,7 +81,8 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(controller: StartingTimeController,
+                      child: TextField(
+                        controller: StartingTimeController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {},
@@ -94,11 +95,13 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(controller: EndDateController,
+                      child: TextField(
+                        controller: EndDateController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  _selectDate(context);
+                                  selectDate(context);
+                                  // print("llllllllllllllllll");
                                 },
                                 icon: Icon(Icons.calendar_month_outlined)),
                             hintText: "End Date",
@@ -109,7 +112,8 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(controller: EndTimeController,
+                      child: TextField(
+                        controller: EndTimeController,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
                                 onPressed: () {},
@@ -122,7 +126,8 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(controller: Reasoncontroller,
+                      child: TextField(
+                        controller: Reasoncontroller,
                         keyboardType: TextInputType.multiline,
                         maxLines: 4,
                         minLines: 1,
