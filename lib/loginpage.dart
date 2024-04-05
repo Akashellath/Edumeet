@@ -12,6 +12,8 @@ class loginpage extends StatefulWidget {
 class _loginpageState extends State<loginpage> {
   @override
   Widget build(BuildContext context) {
+    var Logincontroller = TextEditingController();
+    var Passwordcontroller = TextEditingController();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -37,13 +39,13 @@ class _loginpageState extends State<loginpage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
+                child: TextFormField(controller: Logincontroller,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), hintText: "User Name")),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
+                child: TextFormField(controller: Passwordcontroller,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), hintText: "Password"),
                 ),
