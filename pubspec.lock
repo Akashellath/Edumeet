@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "0978e9a3e45305a80a7210dbeaf79d6ee8bee33f70c8e542dc654c952070217f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.2+1"
   fake_async:
     dependency: transitive
     description:
@@ -304,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  motion_toast:
+    dependency: "direct main"
+    description:
+      name: motion_toast
+      sha256: f3fe9f92d9956814a1aa040c22c8a6c432cfb0c9f783163d9ec64915838e4837
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.9.0"
   path:
     dependency: transitive
     description:
