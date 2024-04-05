@@ -23,7 +23,10 @@ Future<void> selectStartDate(BuildContext context) async {
       lastDate: DateTime(2101));
   if (picked != null && picked != selectedStartDate) {
     selectedStartDate = picked;
-    StartingDateController.text = selectedStartDate.toString();
+    // DateTime now = DateTime.now();
+    String formmattedStartDate =
+        DateFormat("yyyy-MM-dd").format(selectedStartDate);
+    StartingDateController.text = formmattedStartDate.toString();
   }
 }
 
@@ -39,7 +42,9 @@ Future<void> selectEndDate(BuildContext context) async {
       lastDate: DateTime(2101));
   if (picked != null && picked != selectedEndDate) {
     selectedEndDate = picked;
-    EndDateController.text = selectedEndDate.toString();
+    // DateTime now = DateTime.now();
+    String formattedEndDate = DateFormat("yyyy-MM-dd").format(selectedEndDate);
+    EndDateController.text = formattedEndDate.toString();
   }
 }
 
@@ -48,6 +53,7 @@ Future<void> selectEndDate(BuildContext context) async {
 // Start Time Operation
 //
 TimeOfDay selectedStartTime = TimeOfDay.now();
+
 Future<void> selectStartTime(BuildContext context) async {
   final TimeOfDay? picked_s = await showTimePicker(
       context: context,
@@ -60,7 +66,9 @@ Future<void> selectStartTime(BuildContext context) async {
       });
   if (picked_s != null && picked_s != selectedStartTime)
     selectedStartTime = picked_s;
-  StartingTimeController.text = selectedStartTime.toString();
+  DateTime now = DateTime.now();
+  String formattedStartTime = DateFormat.jms().format(now);
+  StartingTimeController.text = formattedStartTime.toString();
 }
 
 //
@@ -79,9 +87,11 @@ Future<void> selectEndTime(BuildContext context) async {
       });
   if (picked_s != null && picked_s != selectedEndTime)
     selectedEndTime = picked_s;
-  EndTimeController.text = selectedEndTime.toString();
+  DateTime now = DateTime.now();
+  String formattedEndTime = DateFormat.jms().format(now);
+  EndTimeController.text = formattedEndTime.toString();
 }
-// 
+//
 // END OF DATE TIME SESSION
 
 var category = ["Sick", "Casual", "etc"];

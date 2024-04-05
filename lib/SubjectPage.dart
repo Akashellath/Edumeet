@@ -114,7 +114,7 @@ class _SubjectPageState extends State<SubjectPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
                   child: Container(
-                    height: MediaQuery.of(context).size.height / 3.2,
+                    height: MediaQuery.of(context).size.height / 3,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                         boxShadow: [

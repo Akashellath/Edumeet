@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class DiaryPage extends StatefulWidget {
-  const DiaryPage({super.key});
+  DiaryPage({super.key});
 
   @override
   State<DiaryPage> createState() => _DiaryPageState();
 }
 
 class _DiaryPageState extends State<DiaryPage> {
+  var DairyDatecontroller = TextEditingController();
+  var DairyNotecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,6 +246,22 @@ class _DiaryPageState extends State<DiaryPage> {
         ));
   }
 
+  DateTime selectedDairyDate = DateTime.now();
+  Future<void> selectDairyDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDairyDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDairyDate) {
+      selectedDairyDate = picked;
+      // DateTime now = DateTime.now();
+      String formmattedDairyDate =
+          DateFormat("yyyy-MM-dd").format(selectedDairyDate);
+      DairyDatecontroller.text = formmattedDairyDate.toString();
+    }
+  }
+
   Future<dynamic> DiaryPageAlertBox(BuildContext context) {
     return showDialog(
         context: context,
@@ -251,7 +270,11 @@ class _DiaryPageState extends State<DiaryPage> {
                 children: [
                   Text("Add Diaries"),
                   Spacer(),
-                  IconButton(onPressed: () {   Navigator.pop(context);}, icon: Icon(Icons.close))
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.close))
                 ],
               ),
               //  insetPadding: EdgeInsets.zero,
@@ -263,8 +286,13 @@ class _DiaryPageState extends State<DiaryPage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        controller: DairyDatecontroller,
                         decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.date_range_outlined),
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  selectDairyDate(context);
+                                },
+                                icon: Icon(Icons.date_range_outlined)),
                             hintText: "Enter Date",
                             border: OutlineInputBorder()),
                       ),
@@ -272,6 +300,7 @@ class _DiaryPageState extends State<DiaryPage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        controller: DairyNotecontroller,
                         keyboardType: TextInputType.multiline,
                         maxLines: 6,
                         minLines: 1,

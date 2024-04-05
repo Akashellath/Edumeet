@@ -15,8 +15,7 @@ class Myprofile extends StatefulWidget {
 }
 
 class _MyprofileState extends State<Myprofile> {
-
-  // PROFILE IMAGE PICKER 
+  // PROFILE IMAGE PICKER
   File? _profileImage;
 
   Future<void> _pickProfileImage() async {
@@ -583,6 +582,7 @@ class _MyprofileState extends State<Myprofile> {
                                 Row(
                                   children: [
                                     Text(
+                                      overflow: TextOverflow.ellipsis,
                                       "Email",
                                       style: GoogleFonts.rajdhani(
                                           fontSize: 20,
