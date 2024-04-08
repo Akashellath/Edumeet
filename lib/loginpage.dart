@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:edumeet_project_irohub/ApiClass.dart';
+import 'package:edumeet_project_irohub/SharedPreference.dart';
+import '../Api&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/ForgotPassword.dart';
 import 'package:edumeet_project_irohub/profilePage.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,7 @@ class _loginpageState extends State<loginpage> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    loginUserInfo();
+                    loginPost();
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -103,7 +104,7 @@ class _loginpageState extends State<loginpage> {
     );
   }
 
-  void loginUserInfo() async {
+  void loginPost() async {
     final username = Usernamecontroller.text;
     final password = Passwordcontroller.text;
     if (username.isEmpty) {
@@ -111,12 +112,13 @@ class _loginpageState extends State<loginpage> {
     } else if (password.isEmpty) {
       showErrorMessage("Please enter Password");
     } else {
-      final formData =
+      final formData1 =
           FormData.fromMap({"username": username, "password": password});
-      final result = await Apiclass().loginApi(formData);
+      final result = await Apiclass().loginApi(formData1);
       if (result != null) {
         if (result.status == 1) {
           showSuccessMessage("succsessfully Logged");
+          saveLoginData(result.message);
           Navigator.push(
               context,
               MaterialPageRoute(

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:edumeet_project_irohub/Response.dart';
-import 'package:edumeet_project_irohub/URL.dart';
+import 'package:edumeet_project_irohub/Model.dart/LoginModel.dart';
+import 'package:edumeet_project_irohub/Api&URLs/URL.dart';
 
 class Apiclass {
   static Apiclass instance = Apiclass();
