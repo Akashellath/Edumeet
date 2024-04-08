@@ -76,11 +76,7 @@ class _loginpageState extends State<loginpage> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => profilePaeg(),
-                        ));
+                    loginUserInfo();
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -115,14 +111,19 @@ class _loginpageState extends State<loginpage> {
     } else if (password.isEmpty) {
       showErrorMessage("Please enter Password");
     } else {
-      final formdata =
+      final formData =
           FormData.fromMap({"username": username, "password": password});
-      final result = await Apiclass().loginApi(formdata);
+      final result = await Apiclass().loginApi(formData);
       if (result != null) {
-        if (result.status == true) {
-          showSuccessMessage(result.message!);
+        if (result.status == 1) {
+          showSuccessMessage("succsessfully Logged");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => profilePaeg(),
+              ));
         } else {
-          showSuccessMessage(result.message!);
+          showErrorMessage("unsuccsessfull :)");
         }
       }
     }

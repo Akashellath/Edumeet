@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:edumeet_project_irohub/LoginResponse.dart';
+import 'package:edumeet_project_irohub/Response.dart';
 import 'package:edumeet_project_irohub/URL.dart';
 
 class Apiclass {
@@ -21,7 +21,7 @@ class Apiclass {
   Future<LoginResponse?> loginApi(FormData formData) async {
     try {
       final result = await dio.post(url.loginpageUrl, data: formData);
-      return LoginResponse.fromJson(jsonDecode(result.data));
+      return LoginResponse.fromJson((result.data));
     } on DioException catch (e) {
       print(e);
     } catch (e) {
