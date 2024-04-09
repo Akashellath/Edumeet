@@ -1,3 +1,4 @@
+import 'package:edumeet_project_irohub/Api&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/DrawerSettings.dart';
 import 'package:edumeet_project_irohub/chatPage.dart';
 
@@ -63,6 +64,11 @@ class _profilePaegState extends State<profilePaeg> {
     students are grouped into four houses.Each group is 
     headed by respective teachers."""
   ];
+  String firstnam = "";
+  String regno = "";
+  String clss = "";
+  String Dob = "";
+  String divsn = "";
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +158,7 @@ class _profilePaegState extends State<profilePaeg> {
                               ),
                               Center(
                                 child: Text(
-                                  "AKASH E",
+                                  firstnam,
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold),
@@ -168,7 +174,7 @@ class _profilePaegState extends State<profilePaeg> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text("12345",
+                                  Text(regno,
                                       style: GoogleFonts.rajdhani(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w500))
@@ -193,7 +199,7 @@ class _profilePaegState extends State<profilePaeg> {
                                               //   fontSize: 18,
                                               // ),
                                               ),
-                                          Text("4",
+                                          Text(clss,
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -401,5 +407,18 @@ class _profilePaegState extends State<profilePaeg> {
         ),
       ),
     );
+  }
+
+  void Profilepagedetails() async {
+    final result = await Apiclass().profielpageApi();
+    print("asdfghjklasdfghjklasdfghjkl");
+    setState(() {
+      firstnam = result!.data[0].firstName;
+      print(firstnam);
+      regno = result.data[0].regNumber;
+      clss = result.data[0].datumClass;
+      Dob = result.data[0].dob;
+      divsn = result.data[0].divisions.name;
+    });
   }
 }
