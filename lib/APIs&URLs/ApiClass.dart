@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:edumeet_project_irohub/Model.dart/LoginModel.dart';
-import 'package:edumeet_project_irohub/Api&URLs/URL.dart';
-import 'package:edumeet_project_irohub/Model.dart/profilepagemodel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/LoginModel.dart';
+import 'package:edumeet_project_irohub/APIs&URLs/URL.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/profilepagemodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Apiclass {

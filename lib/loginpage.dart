@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:edumeet_project_irohub/SharedPreference.dart';
-import '../Api&URLs/ApiClass.dart';
+import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
+import 'APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/ForgotPassword.dart';
 import 'package:edumeet_project_irohub/profilePage.dart';
 import 'package:flutter/material.dart';

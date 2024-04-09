@@ -1,6 +1,6 @@
-import 'package:edumeet_project_irohub/Api&URLs/ApiClass.dart';
+import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/DrawerSettings.dart';
-import 'package:edumeet_project_irohub/chatPage.dart';
+import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 
 import 'package:edumeet_project_irohub/noticePage.dart';
 import 'package:flutter/material.dart';
@@ -321,7 +321,8 @@ class _profilePaegState extends State<profilePaeg> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text("Chandran",
+                    child: Text(parentnam
+                    ,
                         style: GoogleFonts.rajdhani(
                             color: Colors.white,
                             fontSize: 35,

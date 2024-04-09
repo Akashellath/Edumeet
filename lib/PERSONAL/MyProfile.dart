@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:edumeet_project_irohub/chatPage.dart';
+import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
