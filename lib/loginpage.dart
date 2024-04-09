@@ -124,9 +124,9 @@ class _loginpageState extends State<loginpage> {
               MaterialPageRoute(
                 builder: (context) => profilePaeg(),
               ));
-        } else {
-          showErrorMessage("unsuccsessfull :)");
         }
+      } else {
+        showErrorMessage("Login failed :)");
       }
     }
   }

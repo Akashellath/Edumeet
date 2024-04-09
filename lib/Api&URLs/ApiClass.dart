@@ -1,8 +1,10 @@
-import 'dart:convert';
+import 'dart:html';
 
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/Model.dart/LoginModel.dart';
 import 'package:edumeet_project_irohub/Api&URLs/URL.dart';
+import 'package:edumeet_project_irohub/Model.dart/profilepagemodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Apiclass {
   static Apiclass instance = Apiclass();
@@ -27,5 +29,19 @@ class Apiclass {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<ProfilePageModel?> profielpageApi() async {
+    SharedPreferences sharedPreferences1 =
+        await SharedPreferences.getInstance();
+    var tok = sharedPreferences1.getString("token");
+    print("token${tok}");
+    final result = await dio.get(url.BaseUrl + url.profilepageUrl,
+        options: Options(headers: {
+          "content": "application/json",
+          "Accepts": "application/json",
+          "Authorization": "Bearer $tok"
+        }));
+    return ProfilePageModel.fromJson(result.data);
   }
 }
