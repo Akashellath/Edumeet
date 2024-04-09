@@ -69,6 +69,14 @@ class _profilePaegState extends State<profilePaeg> {
   String clss = "";
   String Dob = "";
   String divsn = "";
+  String parentnam = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Profilepagedetails();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +251,7 @@ class _profilePaegState extends State<profilePaeg> {
                                               //   fontSize: 18,
                                               // ),
                                               ),
-                                          Text("A",
+                                          Text(divsn,
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -258,7 +266,7 @@ class _profilePaegState extends State<profilePaeg> {
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)),
-                                          Text("23/07/2002",
+                                          Text(Dob,
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -410,15 +418,18 @@ class _profilePaegState extends State<profilePaeg> {
   }
 
   void Profilepagedetails() async {
+    print(
+        "aaaaaaaaaaaaasasaassasasasasasasasasasasasasasasasasasssssssssasasasasasa");
     final result = await Apiclass().profielpageApi();
     print("asdfghjklasdfghjklasdfghjkl");
     setState(() {
       firstnam = result!.data[0].firstName;
-      print(firstnam);
+      print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrr $firstnam");
       regno = result.data[0].regNumber;
       clss = result.data[0].datumClass;
       Dob = result.data[0].dob;
       divsn = result.data[0].divisions.name;
+      parentnam = result.data[0].parents.firstName;
     });
   }
 }

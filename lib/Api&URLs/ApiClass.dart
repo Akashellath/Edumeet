@@ -32,7 +32,8 @@ class Apiclass {
   Future<ProfilePageModel?> profielpageApi() async {
     SharedPreferences sharedPreferences1 =
         await SharedPreferences.getInstance();
-    var tok = sharedPreferences1.getString("token");
+    var tok = sharedPreferences1.getString("Token");
+    print("aaaaaaeeeeeeeeeeeeeeeeeeeeeee");
     print("token${tok}");
     final result = await dio.get(url.BaseUrl + url.profilepageUrl,
         options: Options(headers: {
@@ -40,6 +41,7 @@ class Apiclass {
           "Accepts": "application/json",
           "Authorization": "Bearer $tok"
         }));
+    print("ppppppppppppppppppAAAPPPIII testingggggggggg${result}");
     return ProfilePageModel.fromJson(result.data);
   }
 }
