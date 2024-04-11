@@ -2,12 +2,13 @@ import 'package:edumeet_project_irohub/ACADEMIC/Event.dart';
 import 'package:edumeet_project_irohub/LEAVEPAGE%20operations/LeaveApplication.dart';
 
 import 'package:edumeet_project_irohub/LEAVEPAGE%20operations/LeaveApplly.dart';
+import 'package:edumeet_project_irohub/PERSONAL/Dashbord.dart';
 import 'package:edumeet_project_irohub/PERSONAL/MyDiary.dart';
-import 'package:edumeet_project_irohub/PERSONAL/MyProfile.dart';
+
 import 'package:edumeet_project_irohub/PERSONAL/StaffDirectory.dart';
 import 'package:edumeet_project_irohub/ACADEMIC/SubjectPage.dart';
 import 'package:edumeet_project_irohub/ACADEMIC/TimetablePage.dart';
-import 'package:edumeet_project_irohub/profilePage.dart';
+import 'package:edumeet_project_irohub/Dashboard.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';

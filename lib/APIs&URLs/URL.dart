@@ -2,5 +2,6 @@ class URL {
   String BaseUrl = "http://iroidtechnologies.in/jeetmeet/api/student/";
 
   String loginpageUrl = "login";
-  String profilepageUrl = "profile";
+  String DashbordpageUrl = "profile";
+  String myprofilePageUrl = "details";
 }

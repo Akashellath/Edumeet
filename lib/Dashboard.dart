@@ -75,7 +75,7 @@ class _profilePaegState extends State<profilePaeg> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Profilepagedetails();
+    Dashboardpagedetails();
   }
 
   @override
@@ -418,7 +418,7 @@ class _profilePaegState extends State<profilePaeg> {
     );
   }
 
-  void Profilepagedetails() async {
+  void  Dashboardpagedetails() async {
     print(
         "aaaaaaaaaaaaasasaassasasasasasasasasasasasasasasasasasssssssssasasasasasa");
     final result = await Apiclass().profielpageApi();

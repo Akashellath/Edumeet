@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -854,5 +855,12 @@ class _MyprofileState extends State<Myprofile> {
         ),
       ),
     );
+  }
+
+  void myprofilepage() async {
+    final result = await Apiclass().MyProfilepageApi();
+    setState(() {
+      
+    });
   }
 }
