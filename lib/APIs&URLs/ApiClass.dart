@@ -47,6 +47,7 @@ class Apiclass {
   }
 
   Future<MyProfileDetails?> MyProfilepageApi() async {
+    print("hellowwwwwww");
     SharedPreferences sharedPreferences2 =
         await SharedPreferences.getInstance();
     var tok2 = sharedPreferences2.getString("Token");
@@ -57,5 +58,6 @@ class Apiclass {
           "Accepts": "application/json",
           "Authorization": "Bearer $tok2"
         }));
+    print(" abababababababababababababababababbabababababab$result");
   }
 }

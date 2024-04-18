@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,6 +17,29 @@ class Myprofile extends StatefulWidget {
 }
 
 class _MyprofileState extends State<Myprofile> {
+  String Gender = "";
+  String STD = "";
+  String Division = "";
+  String RollNo = "";
+  String DoB = "";
+  String PhoneNo = "";
+  String Email = "";
+  String SecondaryPhone = "";
+  String Address = "";
+  String Place = "";
+  String PostCode = "";
+  String BloodGroup = "";
+  String State = "";
+  String Country = "";
+  String Nationaliy = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    myprofilepage();
+  }
+
   // PROFILE IMAGE PICKER
   File? _profileImage;
 
@@ -486,7 +510,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "Male",
+                                    Gender,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -496,7 +520,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "4",
+                                    STD,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -506,7 +530,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "A",
+                                    Division,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -516,7 +540,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "12",
+                                    RollNo,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -526,7 +550,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "23-07-2002",
+                                    DoB,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -536,7 +560,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "+91-9995664367",
+                                    PhoneNo,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -755,7 +779,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "akash123@gmail.com",
+                                    Email,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -765,7 +789,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "+91-9995664367",
+                                    SecondaryPhone,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -775,7 +799,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "1st floor,trust ",
+                                    Address,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -795,7 +819,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "670693",
+                                    PostCode,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -805,7 +829,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "O+",
+                                    BloodGroup,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -815,7 +839,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "Kerala",
+                                    State,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -825,7 +849,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "India",
+                                    Country,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -835,7 +859,7 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "Indian",
+                                    Nationaliy,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -858,9 +882,29 @@ class _MyprofileState extends State<Myprofile> {
   }
 
   void myprofilepage() async {
+    print(
+        "aaaaaaaaaaaaaaaaaaaaaaaakkkkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaaassssssssssssshhhhhhhhhhhh");
     final result = await Apiclass().MyProfilepageApi();
+    print(
+        "reeeeeeesssssssssssssssssssssssssssuuuuuuuuuuuuuuuuuuuuuuuuuuullllllllllllllllttttttttttttt$result");
     setState(() {
-      
+      Gender = result!.data.gender;
+      STD = result.data.classname.toString();
+      Division = result.data.division.toString();
+      RollNo = result.data.rollNumber.toString();
+      DoB = result.data.dob;
+      PhoneNo = result.data.phone.toString();
+      Email = result.data.email;
+      SecondaryPhone = result.data.phone2;
+      Address = result.data.address;
+      Place = result.data.place;
+      PostCode = result.data.code;
+      BloodGroup = result.data.blood;
+      State = result.data.states.toString();
+      Country = result.data.countries.toString();
+      Nationaliy = result.data.nationality;
+      print(
+          "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$Gender");
     });
   }
 }
