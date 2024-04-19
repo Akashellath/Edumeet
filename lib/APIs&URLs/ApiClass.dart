@@ -59,5 +59,6 @@ class Apiclass {
           "Authorization": "Bearer $tok2"
         }));
     print(" abababababababababababababababababbabababababab$result");
+    return MyProfileDetails.fromJson(result.data);
   }
 }

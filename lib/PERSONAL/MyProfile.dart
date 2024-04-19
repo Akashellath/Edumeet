@@ -32,6 +32,10 @@ class _MyprofileState extends State<Myprofile> {
   String State = "";
   String Country = "";
   String Nationaliy = "";
+  String Username = "";
+  String ImgUrl = "";
+  String FirstName = "";
+  String Parent = "";
 
   @override
   void initState() {
@@ -163,9 +167,12 @@ class _MyprofileState extends State<Myprofile> {
                                     backgroundColor:
                                         const Color.fromARGB(255, 255, 17, 0),
                                     radius: 55,
-                                    backgroundImage: AssetImage(
-                                        "Asset/FB_IMG_1659716185316.jpg"),
-                                  )
+                                    backgroundImage: NetworkImage(ImgUrl,)
+                                    //  AssetImage(
+                                    //     "Asset/FB_IMG_1659716185316.jpg"),
+                                    // NetworkImage(ImgUrl),
+                                    // Image.network(ImgUrl)
+                                    )
                                 : CircleAvatar(
                                     radius: 55,
                                     backgroundImage: FileImage(_profileImage!),
@@ -197,7 +204,7 @@ class _MyprofileState extends State<Myprofile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Akash",
+                    FirstName,
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -340,7 +347,7 @@ class _MyprofileState extends State<Myprofile> {
                           child: Column(
                             children: [
                               Text(
-                                "Akash",
+                                Parent,
                                 style: TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold),
                               ),
@@ -780,6 +787,7 @@ class _MyprofileState extends State<Myprofile> {
                                 children: [
                                   Text(
                                     Email,
+                                    overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -790,6 +798,7 @@ class _MyprofileState extends State<Myprofile> {
                                 children: [
                                   Text(
                                     SecondaryPhone,
+                                    overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -800,6 +809,7 @@ class _MyprofileState extends State<Myprofile> {
                                 children: [
                                   Text(
                                     Address,
+                                    overflow: TextOverflow.visible,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -809,7 +819,8 @@ class _MyprofileState extends State<Myprofile> {
                               Row(
                                 children: [
                                   Text(
-                                    "Kaloor",
+                                    Place,
+                                    overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.rajdhani(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500),
@@ -903,8 +914,12 @@ class _MyprofileState extends State<Myprofile> {
       State = result.data.states.toString();
       Country = result.data.countries.toString();
       Nationaliy = result.data.nationality;
+      Username = result.data.username;
+      ImgUrl = result.data.profileImageUrl;
+      FirstName = result.data.firstName;
+      Parent = result.data.parents.toString();
       print(
-          "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$Gender");
+          "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$ImgUrl");
     });
   }
 }
