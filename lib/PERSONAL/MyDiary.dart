@@ -1,4 +1,6 @@
+import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -14,8 +16,18 @@ class DiaryPage extends StatefulWidget {
 }
 
 class _DiaryPageState extends State<DiaryPage> {
+  var datas = [];
+  var note = [];
+
   var DairyDatecontroller = TextEditingController();
   var DairyNotecontroller = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDiaryDetaills();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +141,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                       bottomRight: Radius.circular(10))),
                               child: Center(
                                 child: Text(
-                                  "12",
+                                  datas[index].id.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color:
@@ -143,7 +155,7 @@ class _DiaryPageState extends State<DiaryPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Note 1",
+                                  Text(datas[index].note,
                                       style: GoogleFonts.rajdhani(
                                           color:
                                               Color.fromARGB(255, 99, 98, 98),
@@ -163,7 +175,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Text("23/07/2002",
+                                      Text(datas[index].date,
                                           style: GoogleFonts.rajdhani(
                                             color:
                                                 Color.fromARGB(255, 88, 87, 87),
@@ -237,7 +249,7 @@ class _DiaryPageState extends State<DiaryPage> {
                         ),
                       ),
                     ),
-                    itemCount: 5,
+                    itemCount: datas.length,
                   ))
 
               //
@@ -313,5 +325,13 @@ class _DiaryPageState extends State<DiaryPage> {
                 ),
               ),
             ));
+  }
+
+  void getDiaryDetaills() async {
+    final result = await Apiclass().myDiariyApi();
+    setState(() {
+      datas.addAll(result!.data!);
+      // print("0000000000000000000000${}");
+    });
   }
 }

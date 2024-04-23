@@ -71,11 +71,14 @@ class Apiclass {
           await SharedPreferences.getInstance();
       var tok3 = sharedPreferences3.getString("Token");
 
-      final result = await dio.post(url.diariesurl, options: Options(headers: {
-        "content":"application/json",
-         "Accepts": "application/json",
-          "Authorization": "Bearer $tok3"
-      }));
+      final result = await dio.post(url.diariesUrl,
+          options: Options(headers: {
+            "content": "application/json",
+            "Accepts": "application/json",
+            "Authorization": "Bearer $tok3"
+          }));
+      print("0000000000000000000000yy${result.data!}");
+
       return DiarypageModel.fromJson((result.data));
     } on DioException catch (e) {
       print(e);

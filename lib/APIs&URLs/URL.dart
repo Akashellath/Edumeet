@@ -4,5 +4,5 @@ class URL {
   String loginpageUrl = "login";
   String DashbordpageUrl = "profile";
   String myprofilePageUrl = "details";
-  String diariesurl = "dairies";
+  String diariesUrl = "diaries";
 }
