@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LoginModel.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/URL.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
@@ -60,5 +63,24 @@ class Apiclass {
         }));
     print(" abababababababababababababababababbabababababab$result");
     return MyProfileDetails.fromJson(result.data);
+  }
+
+  Future<DiarypageModel?> myDiariyApi() async {
+    try {
+      SharedPreferences sharedPreferences3 =
+          await SharedPreferences.getInstance();
+      var tok3 = sharedPreferences3.getString("Token");
+
+      final result = await dio.post(url.diariesurl, options: Options(headers: {
+        "content":"application/json",
+         "Accepts": "application/json",
+          "Authorization": "Bearer $tok3"
+      }));
+      return DiarypageModel.fromJson((result.data));
+    } on DioException catch (e) {
+      print(e);
+    } catch (e) {
+      print(e);
+    }
   }
 }

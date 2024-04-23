@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
-import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -167,7 +166,9 @@ class _MyprofileState extends State<Myprofile> {
                                     backgroundColor:
                                         const Color.fromARGB(255, 255, 17, 0),
                                     radius: 55,
-                                    backgroundImage: NetworkImage(ImgUrl,)
+                                    backgroundImage: NetworkImage(
+                                      ImgUrl,
+                                    )
                                     //  AssetImage(
                                     //     "Asset/FB_IMG_1659716185316.jpg"),
                                     // NetworkImage(ImgUrl),
@@ -650,6 +651,7 @@ class _MyprofileState extends State<Myprofile> {
                                   children: [
                                     Text(
                                       "Address",
+                                      softWrap: false,
                                       style: GoogleFonts.rajdhani(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w500),
@@ -773,7 +775,7 @@ class _MyprofileState extends State<Myprofile> {
                       Expanded(
                           child: Container(
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 255, 255, 255),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(30),
                               bottomRight: Radius.circular(30),
@@ -805,16 +807,14 @@ class _MyprofileState extends State<Myprofile> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    Address,
-                                    overflow: TextOverflow.visible,
-                                    style: GoogleFonts.rajdhani(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
+                              Text(
+                                Address,
+                                // overflow: TextOverflow.visible,
+                                // overflow: TextOverflow.ellipsis,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: GoogleFonts.rajdhani(
+                                    fontSize: 20, fontWeight: FontWeight.w500),
                               ),
                               Row(
                                 children: [
@@ -900,7 +900,7 @@ class _MyprofileState extends State<Myprofile> {
         "reeeeeeesssssssssssssssssssssssssssuuuuuuuuuuuuuuuuuuuuuuuuuuullllllllllllllllttttttttttttt$result");
     setState(() {
       Gender = result!.data.gender;
-      STD = result.data.classname.toString();
+      STD = result.data.classname.name;
       Division = result.data.division.toString();
       RollNo = result.data.rollNumber.toString();
       DoB = result.data.dob;
@@ -911,13 +911,13 @@ class _MyprofileState extends State<Myprofile> {
       Place = result.data.place;
       PostCode = result.data.code;
       BloodGroup = result.data.blood;
-      State = result.data.states.toString();
-      Country = result.data.countries.toString();
+      State = result.data.states.name;
+      Country = result.data.countries.name;
       Nationaliy = result.data.nationality;
       Username = result.data.username;
       ImgUrl = result.data.profileImageUrl;
       FirstName = result.data.firstName;
-      Parent = result.data.parents.toString();
+      Parent = result.data.parents.firstName;
       print(
           "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$ImgUrl");
     });
