@@ -1,23 +1,24 @@
+import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StaffDirectory extends StatefulWidget {
   StaffDirectory({super.key});
-
-  var subjects = [
-    "Mathematics",
-    "English",
-    "Physics",
-    "Chemistry",
-    "Biology",
-  ];
-  var Teachers = ["Anil", "Akash", "Rahul", "Kripa Anil", "Susmitha Sreemathi"];
   @override
   State<StaffDirectory> createState() => _StaffDirectoryState();
 }
 
 class _StaffDirectoryState extends State<StaffDirectory> {
+  var StaffData = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getStaffDirectory();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +98,7 @@ class _StaffDirectoryState extends State<StaffDirectory> {
                                                   255, 58, 58, 58),
                                               fontSize: 19,
                                               fontWeight: FontWeight.bold)),
-                                      Text(widget.subjects[index],
+                                      Text(StaffData[index].subject,
                                           style: GoogleFonts.rajdhani(
                                               color: Color.fromARGB(
                                                   255, 58, 58, 58),
@@ -116,7 +117,7 @@ class _StaffDirectoryState extends State<StaffDirectory> {
                                                   255, 58, 58, 58),
                                               fontSize: 19,
                                               fontWeight: FontWeight.bold)),
-                                      Text(widget.Teachers[index],
+                                      Text(StaffData[index].teachers,
                                           style: GoogleFonts.rajdhani(
                                               color: Color.fromARGB(
                                                   255, 58, 58, 58),
@@ -131,12 +132,19 @@ class _StaffDirectoryState extends State<StaffDirectory> {
                         ),
                       ),
                     ),
-                    itemCount: widget.subjects.length,
+                    itemCount: StaffData.length,
                   ))
 
               //
             ],
           ),
         ));
+  }
+
+  void getStaffDirectory() async {
+    final result = await Apiclass().staffDirectoryApi();
+    setState(() {
+      StaffData.addAll(result!.data!);
+    });
   }
 }
