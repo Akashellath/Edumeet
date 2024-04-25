@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class noticePage extends StatefulWidget {
-  var titlename;
-  noticePage({super.key });
+  String? titlename;
+  String? noticeDetaling;
+  noticePage({super.key, this.titlename, this.noticeDetaling});
 
   @override
   State<noticePage> createState() => _noticePageState();
@@ -52,7 +53,7 @@ class _noticePageState extends State<noticePage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, bottom: 10),
                 child: Text(
-                  "data",
+                  widget.titlename.toString(),
                   style: GoogleFonts.rajdhani(
                       fontWeight: FontWeight.w600, fontSize: 16),
                 ),
@@ -73,7 +74,7 @@ class _noticePageState extends State<noticePage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, bottom: 10),
                 child: Text(
-                  "data",
+                  widget.noticeDetaling.toString(),
                   style: GoogleFonts.rajdhani(
                       fontWeight: FontWeight.w600, fontSize: 15),
                 ),

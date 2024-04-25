@@ -1,7 +1,6 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LoginModel.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/URL.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
@@ -99,5 +98,19 @@ class Apiclass {
           "Authorization": "Bearer $tok4"
         }));
     return StaffDirectoryModel.fromJson(result.data);
+  }
+
+  Future<EventPageModel?> EventPageApi() async {
+    SharedPreferences sharedPreferences5 =
+        await SharedPreferences.getInstance();
+    var token5 = sharedPreferences5.getString("Token");
+    final result = await dio.post(url.EventPageUrl,
+        options: Options(headers: {
+          "content": "application/json",
+          "Accepts": "application/json",
+          "Authorization": "Bearer $token5"
+        }));
+    print("pppppppppppppppppppppppppppppppppppppppppppp${result.data}");
+    return eventPageModelFromJson(result.data);
   }
 }

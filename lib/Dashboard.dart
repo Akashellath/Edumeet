@@ -135,9 +135,12 @@ class _profilePaegState extends State<profilePaeg> {
                         offset: Offset(2.0, 2.0))
                   ],
                   color: Color.fromARGB(255, 255, 17, 0),
-                  borderRadius: BorderRadiusDirectional.vertical(
-                      bottom: Radius.elliptical(
-                          MediaQuery.of(context).size.width, 100.0))),
+                  // borderRadius:
+                  // BorderRadiusDirectional.vertical(
+                  //     bottom: Radius.elliptical(
+                  //         MediaQuery.of(context).size.width, 100.0))
+                  borderRadius: BorderRadius.vertical(
+                      bottom: Radius.elliptical(300, 90))),
               child: Column(
                 children: [
                   Stack(
@@ -321,8 +324,7 @@ class _profilePaegState extends State<profilePaeg> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text(parentnam
-                    ,
+                    child: Text(parentnam,
                         style: GoogleFonts.rajdhani(
                             color: Colors.white,
                             fontSize: 35,
@@ -378,8 +380,12 @@ class _profilePaegState extends State<profilePaeg> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => noticePage(),
-                                      ));
+                                        builder: (context) => noticePage(
+                                          titlename: noticeTitle[index],
+                                          noticeDetaling: noticeDetails[index],
+                                        ),
+                                      ));   print(
+                                            "nooooooooottttttiiiicccceeeeeeepppppaaaggggggee$noticeTitle");
                                 },
                                 child: ListTile(
                                   title: Text(
@@ -399,6 +405,7 @@ class _profilePaegState extends State<profilePaeg> {
                                               builder: (context) =>
                                                   noticePage(),
                                             ));
+                                     
                                       },
                                       icon:
                                           Icon(Icons.arrow_forward_ios_sharp)),
@@ -418,7 +425,7 @@ class _profilePaegState extends State<profilePaeg> {
     );
   }
 
-  void  Dashboardpagedetails() async {
+  void Dashboardpagedetails() async {
     print(
         "aaaaaaaaaaaaasasaassasasasasasasasasasasasasasasasasasssssssssasasasasasa");
     final result = await Apiclass().profielpageApi();

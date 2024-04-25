@@ -1,3 +1,4 @@
+import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,15 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
+  var EventPageData = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetEventData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +71,7 @@ class _EventPageState extends State<EventPage> {
               )
             ]),
         body: ListView.builder(
-            itemCount: 4,
+            itemCount: EventPageData.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
@@ -122,7 +132,7 @@ class _EventPageState extends State<EventPage> {
                                           width: 5,
                                         ),
                                         Text(
-                                          "Assigned",
+                                          EventPageData[index].type,
                                           style: GoogleFonts.rajdhani(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -147,7 +157,7 @@ class _EventPageState extends State<EventPage> {
                                           width: 5,
                                         ),
                                         Text(
-                                          "16-02-2021",
+                                          EventPageData[index].start_date,
                                           style: GoogleFonts.rajdhani(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -172,7 +182,7 @@ class _EventPageState extends State<EventPage> {
                                           width: 5,
                                         ),
                                         Text(
-                                          "01-07-2021",
+                                          EventPageData[index].exp_date,
                                           style: GoogleFonts.rajdhani(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -197,7 +207,7 @@ class _EventPageState extends State<EventPage> {
                                           width: 5,
                                         ),
                                         Text(
-                                          "4 A",
+                                          EventPageData[index].division,
                                           style: GoogleFonts.rajdhani(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -222,7 +232,7 @@ class _EventPageState extends State<EventPage> {
                                           width: 5,
                                         ),
                                         Text(
-                                          "9:54 AM",
+                                          EventPageData[index].time,
                                           style: GoogleFonts.rajdhani(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -241,5 +251,14 @@ class _EventPageState extends State<EventPage> {
                 ],
               );
             }));
+  }
+
+  void GetEventData() async {
+    final result = await Apiclass().EventPageApi();
+    setState(() {
+      EventPageData.addAll(result!.data);
+      print(
+          "rreeeeeeeeeeeeeeeeeeeeeeesssssssssssssssssssssssssssuuuuuuuuuuuuuuuuuuuulllllllllllllllllltttttttt${result.data}");
+    });
   }
 }

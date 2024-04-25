@@ -6,4 +6,5 @@ class URL {
   String myprofilePageUrl = "details";
   String diariesUrl = "diaries";
   String staffdirectoryUrl = "staff-directory";
+  String EventPageUrl = "events";
 }
