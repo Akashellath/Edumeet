@@ -7,4 +7,5 @@ class URL {
   String diariesUrl = "diaries";
   String staffdirectoryUrl = "staff-directory";
   String EventPageUrl = "events";
+  String AssignedLeaveUrl = "leave/apply/add";
 }

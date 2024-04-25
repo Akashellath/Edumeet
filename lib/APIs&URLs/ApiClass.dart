@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/AssignedLeaveModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LoginModel.dart';
@@ -112,5 +113,19 @@ class Apiclass {
         }));
     print("pppppppppppppppppppppppppppppppppppppppppppp${result.data}");
     return eventPageModelFromJson(result.data);
+  }
+
+  Future<AssignedLeaveModel?> AssignedPageApi() async {
+    SharedPreferences sharedPreferences6 =
+        await SharedPreferences.getInstance();
+
+    var token6 = sharedPreferences6.getString("Token");
+    final result = await dio.get(url.BaseUrl + url.AssignedLeaveUrl,
+        options: Options(headers: {
+          "content": "application/json",
+          "Accepts": "application/json",
+          "Authorization": "Bearer $token6"
+        }));
+    return assignedLeaveModelFromJson(result.data);
   }
 }
