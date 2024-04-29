@@ -4,6 +4,7 @@ import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LoginModel.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/URL.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/LogoutModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/Staff-Directory.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/profilepagemodel.dart';
@@ -26,7 +27,7 @@ class Apiclass {
   Future<LoginResponse?> loginApi(FormData formData) async {
     try {
       final result = await dio.post(url.loginpageUrl, data: formData);
-      return LoginResponse.fromJson((result.data));
+      return LoginResponse.fromJson(result.data);
     } on DioException catch (e) {
       print(e);
     } catch (e) {
@@ -128,4 +129,33 @@ class Apiclass {
         }));
     return assignedLeaveModelFromJson(result.data);
   }
+
+  /*Future<Logoutmodel?> LougoutApi() async {
+    SharedPreferences sharedPreferences7 =
+        await SharedPreferences.getInstance();
+    var token7 = sharedPreferences7.getString("Token");
+    final result = dio.get(url.BaseUrl + url.LogoutUrl,
+        options: Options(headers: {
+          "content": "application/json",
+          "Accepts": "application/json",
+          "Authorization": "Bearer $token7"
+        }));
+    return Logoutmodel.fromJson(result);
+  }*/
+  
+  
+  Future< Logoutmodel?>logoutuserapi()async{
+  SharedPreferences share = await SharedPreferences.getInstance();
+  var tok = share.getString("token");
+  final result = await dio.get(url.LogoutUrl,
+  options: Options(headers: {
+    "Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $tok"
+  }));
+  print("logggggggg${result}");
+  return Logoutmodel.fromJson((result.data));
+}
+
+  
 }

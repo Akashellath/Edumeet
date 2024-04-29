@@ -59,7 +59,7 @@ class _AsssingdleaveState extends State<Asssingdleave> {
                                         fontSize: 19,
                                         fontWeight: FontWeight.bold)),
                                 Spacer(),
-                                Text("15 "),
+                                Text(AssigneleaveList[index].id),
                                 Text("Days"),
                               ],
                             ),

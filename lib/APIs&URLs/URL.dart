@@ -8,4 +8,5 @@ class URL {
   String staffdirectoryUrl = "staff-directory";
   String EventPageUrl = "events";
   String AssignedLeaveUrl = "leave/apply/add";
+  String LogoutUrl = "logout";
 }
