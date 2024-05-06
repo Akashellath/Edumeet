@@ -55,7 +55,7 @@ class _AsssingdleaveState extends State<Asssingdleave> {
                               child: Row(
                                 children: [
                                   Text(
-                                    AssigneleaveList[index].name.toString(),
+                                   "onam",
                                       style: GoogleFonts.rajdhani(
                                           color: Color.fromARGB(255, 99, 98, 98),
                                           fontSize: 19,
@@ -72,7 +72,7 @@ class _AsssingdleaveState extends State<Asssingdleave> {
                         ),
                     itemCount:
                    
-                      AssigneleaveList.length,
+                      4,
                     ))
         
             //

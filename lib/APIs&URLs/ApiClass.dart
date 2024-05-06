@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/AssignedLeaveModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/LeaveApplySavepost';
 import 'package:edumeet_project_irohub/MODELCLASS/LoginModel.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/URL.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LogoutModel.dart';
@@ -174,7 +175,14 @@ Future<LeaveApplyData?>leaveapplydataUrl()async{
 
 
 
-
+Future<LeaveApplySave?>LeaveApplySaveApi(FormData formData)async{
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  var tokk=sharedPreferences.getString("Token");
+  final result=await dio.post(url.LeaveApplySaveUrl,data: formData,options: Options(headers: {  "Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $tokk"}));
+      return LeaveApplySave.fromJson(result.data);
+}
 
 
 }
