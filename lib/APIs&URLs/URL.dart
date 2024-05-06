@@ -9,4 +9,6 @@ class URL {
   String EventPageUrl = "events";
   String AssignedLeaveUrl = "leave/apply/add";
   String LogoutUrl = "logout";
+  String LeaveApplyUrl ="leave/apply";
+
 }

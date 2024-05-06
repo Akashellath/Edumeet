@@ -127,7 +127,7 @@ class _MyprofileState extends State<Myprofile> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: Color.fromARGB(255, 234, 234, 234),
+        color: Color(0xFFEAEAEA),
         child: SingleChildScrollView(
           child: Column(
             children: [

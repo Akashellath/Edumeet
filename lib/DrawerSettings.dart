@@ -33,7 +33,7 @@ class _drawerwidgetState extends State<drawerwidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    GetLogoutData();
+  //  GetLogoutData();
   }
 
   @override

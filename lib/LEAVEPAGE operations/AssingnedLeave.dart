@@ -27,59 +27,67 @@ class _AsssingdleaveState extends State<Asssingdleave> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       color: Color.fromARGB(255, 226, 223, 223),
-      child: Column(
-        children: [
-          Container(
-              height: MediaQuery.of(context).size.height / 1.2,
-              width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 226, 223, 223),
-              child: ListView.builder(
-                  itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 100,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black,
-                                    blurRadius: 2.2,
-                                    spreadRadius: 0.0,
-                                    offset: Offset(2.0, 2.0))
-                              ],
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Text(AssigneleaveList[index].name,
-                                    style: GoogleFonts.rajdhani(
-                                        color: Color.fromARGB(255, 99, 98, 98),
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.bold)),
-                                Spacer(),
-                                Text(AssigneleaveList[index].id),
-                                Text("Days"),
-                              ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+                height: MediaQuery.of(context).size.height / 1.2,
+                width: MediaQuery.of(context).size.width,
+                color: Color.fromARGB(255, 226, 223, 223),
+                child: ListView.builder(
+                    itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 100,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black,
+                                      blurRadius: 2.2,
+                                      spreadRadius: 0.0,
+                                      offset: Offset(2.0, 2.0))
+                                ],
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    AssigneleaveList[index].name.toString(),
+                                      style: GoogleFonts.rajdhani(
+                                          color: Color.fromARGB(255, 99, 98, 98),
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.bold)),
+                                  Spacer(),
+                                  Text("5"),
+                                    // AssigneleaveList[index].id.toString()
+                                  
+                                  Text("Days"),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                  itemCount: AssigneleaveList.length
-                  //  AssigneleaveList.length,
-                  ))
-
-          //
-        ],
+                    itemCount:
+                   
+                      AssigneleaveList.length,
+                    ))
+        
+            //
+          ],
+        ),
       ),
     ));
   }
 
-  void GetAssingedData() async {
+  void GetAssingedData() async {print("ggegettttAAAssssssiinnngggDDDaaatttaaa");
     final result = await Apiclass().AssignedPageApi();
-    setState(() {
+    setState(() {;
       AssigneleaveList.addAll(result!.data);
+      print("assssasasssaasasasaaaasaaaasaa$AssigneleaveList");
+      print("fgffffffffffffffffffffggggggggggggggggffff$result");
     });
   }
 }

@@ -7,6 +7,7 @@ import 'package:edumeet_project_irohub/APIs&URLs/URL.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LogoutModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/Staff-Directory.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/leaveapplydata.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/profilepagemodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -146,7 +147,7 @@ class Apiclass {
   
   Future< Logoutmodel?>logoutuserapi()async{
   SharedPreferences share = await SharedPreferences.getInstance();
-  var tok = share.getString("token");
+  var tok = share.getString("Token");
   final result = await dio.get(url.LogoutUrl,
   options: Options(headers: {
     "Content": "application/json",
@@ -158,4 +159,22 @@ class Apiclass {
 }
 
   
+Future<LeaveApplyData?>leaveapplydataUrl()async{
+  SharedPreferences sharedPreferences88 =await SharedPreferences.getInstance();
+  var tok9=sharedPreferences88.getString("Token");
+  final result =await dio.post(url.LeaveApplyUrl,options: Options(headers: { 
+    "Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $tok9"}));
+      print("klklklklklklklklklkklklkklklklklklklkllkllklkkl$result");
+      return LeaveApplyData.fromJson(result.data);
+}
+
+
+
+
+
+
+
+
 }
