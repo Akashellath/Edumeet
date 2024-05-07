@@ -10,5 +10,7 @@ class URL {
   String AssignedLeaveUrl = "leave/apply/add";
   String LogoutUrl = "logout";
   String LeaveApplyUrl ="leave/apply";
+  String LeaveApplySaveUrl="leave/apply/save";
+  String EditProfileNAmeUrl="profile/edit_name";
 
 }

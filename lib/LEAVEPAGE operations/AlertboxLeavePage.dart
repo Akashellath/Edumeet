@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
+import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 var categorycontroller = TextEditingController();
 var StartingDateController = TextEditingController();
@@ -96,6 +99,81 @@ Future<void> selectEndTime(BuildContext context) async {
 
 var category = ["Sick", "Casual", "etc"];
 Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
+
+
+void showErrorMessage(String message) {
+    MotionToast.error(
+      title: Text("Error"),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
+  }
+
+  void showSuccessMessage(String message) {
+    MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
+  }
+
+  
+  void LeaveApplyAlertPost() async {
+    final start_date = StartingDateController.text;
+    final end_date = EndDateController.text;
+    final start_time = StartingTimeController.text;
+    final end_time = EndTimeController.text;
+    final reason = Reasoncontroller.text;
+    final leave_category = categorycontroller.text;
+    if (start_date.isEmpty) {
+      showErrorMessage("choose Start Date");
+    } else if (end_date.isEmpty) {
+      showErrorMessage("choose End Date");
+    } else if (start_time.isEmpty) {
+      showErrorMessage("choose Start time");
+    } else if (end_time.isEmpty) {
+      showErrorMessage("choose End time");
+    } else if (reason.isEmpty) {
+      showErrorMessage("Enter the reason");
+    } else if (leave_category.isEmpty) {
+      showErrorMessage("choose Category");
+    } else {
+      final formData2 = FormData.fromMap({
+        "start_date": start_time,
+        "end_date": end_time,
+        "start_time": start_time,
+        "end_time": end_time,
+        "reason": reason,
+        "leave_category": leave_category
+      });final result = await Apiclass().LeaveApplySaveApi(formData2);
+    if (result != null) {  if (result.status==1){
+      showSuccessMessage("Applied Sucsesfully");
+    }}else {showErrorMessage("Application Failed");}
+  
+    }
+    ;
+    
+  }
+
+  //
+  //
+  //
+  //
+
+  
   return showDialog(
       context: context,
       builder: (alert) => AlertDialog(
@@ -224,22 +302,26 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
 
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 50,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(31, 17, 17, 17),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                            child: Text(
-                          "Submit",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                      child: GestureDetector(onTap: () {
+                        LeaveApplyAlertPost();
+                      },
+                        child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(31, 17, 17, 17),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        )),
+                          child: Center(
+                              child: Text(
+                            "Submit",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                        ),
                       ),
                     )
                   ],
@@ -248,4 +330,9 @@ Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
             ),
             actions: [],
           ));
+
+
+
+
 }
+

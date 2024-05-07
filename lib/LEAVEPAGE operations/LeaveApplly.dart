@@ -1,9 +1,11 @@
 // import 'package:edumeet_project_irohub/AlertboxLeavePage.dart';
+import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 import 'AlertboxLeavePage.dart';
 
@@ -15,15 +17,14 @@ class leaveApply extends StatefulWidget {
 }
 
 class _leaveApplyState extends State<leaveApply> {
-var names=[];
-var dataa=[];
-@override
+  var names = [];
+  var dataa = [];
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-LeaveapplyGetData();  
+    LeaveapplyGetData();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +37,10 @@ LeaveapplyGetData();
               height: MediaQuery.of(context).size.height / 1.32,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
-                  itemCount:dataa.length,
-                  itemBuilder: (context, index) {print("gjhhjggjlmllmmlmlmllmllmllmlmmlmlmlmllmlmlmlmlmllmlm$dataa");
+                  itemCount: dataa.length,
+                  itemBuilder: (context, index) {
+                    print(
+                        "gjhhjggjlmllmmlmlmllmllmllmlmmlmlmlmllmlmlmlmlmllmlm$dataa");
                     return Column(
                       children: [
                         Padding(
@@ -57,7 +60,7 @@ LeaveapplyGetData();
                                 width: 5,
                               ),
                               Text(
-                                 dataa[index].applyDate.toString(),
+                                dataa[index].applyDate.toString(),
                                 style: GoogleFonts.rajdhani(
                                   color: Color.fromARGB(255, 88, 87, 87),
                                   fontSize: 16,
@@ -96,8 +99,8 @@ LeaveapplyGetData();
                           ),
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.only(top: 15, right: 10, left: 10),
+                          padding: const EdgeInsets.only(
+                              top: 15, right: 10, left: 10),
                           child: Container(
                             height: MediaQuery.of(context).size.height / 2.5,
                             width: MediaQuery.of(context).size.width,
@@ -120,7 +123,8 @@ LeaveapplyGetData();
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Column(
                                         mainAxisAlignment:
@@ -131,8 +135,8 @@ LeaveapplyGetData();
                                           Text(
                                             "Applicant's Name",
                                             style: GoogleFonts.rajdhani(
-                                              color:
-                                                  Color.fromARGB(255, 88, 87, 87),
+                                              color: Color.fromARGB(
+                                                  255, 88, 87, 87),
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -145,7 +149,10 @@ LeaveapplyGetData();
                                             //
                                             //
                                             //
-                                            dataa[index].studentname.firstName.toString()
+                                            dataa[index]
+                                                .studentname
+                                                .firstName
+                                                .toString()
                                             // "Akash"
                                             ,
                                             style: TextStyle(
@@ -158,8 +165,8 @@ LeaveapplyGetData();
                                           Text(
                                             "Schedule",
                                             style: GoogleFonts.rajdhani(
-                                              color:
-                                                  Color.fromARGB(255, 88, 87, 87),
+                                              color: Color.fromARGB(
+                                                  255, 88, 87, 87),
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -167,10 +174,13 @@ LeaveapplyGetData();
                                           Row(
                                             children: [
                                               Text(
-                                                 dataa[index].fromDate.toString(),
+                                                dataa[index]
+                                                    .fromDate
+                                                    .toString(),
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                               // Text(
                                               //   "-",
@@ -192,14 +202,14 @@ LeaveapplyGetData();
                                           Text(
                                             "Reason",
                                             style: GoogleFonts.rajdhani(
-                                              color:
-                                                  Color.fromARGB(255, 88, 87, 87),
+                                              color: Color.fromARGB(
+                                                  255, 88, 87, 87),
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                           Text(
-                                          dataa[index].reason.toString(),
+                                            dataa[index].reason.toString(),
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold),
@@ -232,14 +242,17 @@ LeaveapplyGetData();
                                           Text(
                                             "Category",
                                             style: GoogleFonts.rajdhani(
-                                              color:
-                                                  Color.fromARGB(255, 88, 87, 87),
+                                              color: Color.fromARGB(
+                                                  255, 88, 87, 87),
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                           Text(
-                                            dataa[index].leaveCategoryname.name . toString(),
+                                            dataa[index]
+                                                .leaveCategoryname
+                                                .name
+                                                .toString(),
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
@@ -250,8 +263,8 @@ LeaveapplyGetData();
                                           Text(
                                             "Days",
                                             style: GoogleFonts.rajdhani(
-                                              color:
-                                                  Color.fromARGB(255, 88, 87, 87),
+                                              color: Color.fromARGB(
+                                                  255, 88, 87, 87),
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -259,10 +272,13 @@ LeaveapplyGetData();
                                           Row(
                                             children: [
                                               Text(
-                                               dataa[index].leaveDays.toString(),
+                                                dataa[index]
+                                                    .leaveDays
+                                                    .toString(),
                                                 style: TextStyle(
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ],
                                           ),
@@ -285,7 +301,8 @@ LeaveapplyGetData();
                                     height: 26,
                                     width: 85,
                                     decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 120, 119, 119),
+                                        color:
+                                            Color.fromARGB(255, 120, 119, 119),
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
                                   SizedBox(
@@ -390,12 +407,40 @@ LeaveapplyGetData();
     );
   }
 
-
-  void LeaveapplyGetData()async{
-    final result=await Apiclass().leaveapplydataUrl();
+  void LeaveapplyGetData() async {
+    final result = await Apiclass().leaveapplydataUrl();
     setState(() {
-    dataa.addAll(result!.data);
+      dataa.addAll(result!.data);
       print("plplplplplpplpllplplplplplplplplplplplplplplplpl$result");
     });
+  }
+
+   void showErrorMessage(String message) {
+    MotionToast.error(
+      title: Text("Error"),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
+  }
+
+  void showSuccessMessage(String message) {
+    MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
   }
 }

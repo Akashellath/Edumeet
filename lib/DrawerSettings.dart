@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motion_toast/motion_toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //  All drawer control and settings are in this page
 
@@ -29,11 +30,13 @@ class drawerwidget extends StatefulWidget {
 
 class _drawerwidgetState extends State<drawerwidget> {
   var logoutData = "";
+  var profilename="";
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   //  GetLogoutData();
+  loadNameData();
   }
 
   @override
@@ -76,10 +79,10 @@ class _drawerwidgetState extends State<drawerwidget> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
-                            child: Text("Akash",
+                            child: Text("$profilename",
                                 style: GoogleFonts.barlowSemiCondensed(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 30,
                                     fontWeight: FontWeight.w400)),
                           ),
                         ],
@@ -338,6 +341,14 @@ class _drawerwidgetState extends State<drawerwidget> {
       dismissable: false,
     ).show(context);
   }
+    void loadNameData()async{
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+ setState(() {
+  profilename =sharedPreferences.getString("name1")??""; 
+  print("ddddddddddddddddddddddddddddddddddddddddd z$profilename");
+    
+ }); 
+}
 }
 
 class textwidget extends StatelessWidget {
@@ -355,4 +366,5 @@ class textwidget extends StatelessWidget {
           )),
     );
   }
+
 }

@@ -5,6 +5,7 @@ import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:edumeet_project_irohub/noticePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class profilePaeg extends StatefulWidget {
   const profilePaeg({super.key});
@@ -76,6 +77,7 @@ class _profilePaegState extends State<profilePaeg> {
     // TODO: implement initState
     super.initState();
     Dashboardpagedetails();
+    // saveNameData();
   }
 
   @override
@@ -438,6 +440,25 @@ class _profilePaegState extends State<profilePaeg> {
       Dob = result.data[0].dob;
       divsn = result.data[0].divisions.name;
       parentnam = result.data[0].parents.firstName;
+      saveNameData();
     });
   }
+  
+
+
+
+
+ Future<void>saveNameData()async{"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  setState(() {
+    sharedPreferences.setString("name1", firstnam);
+   var profilename =sharedPreferences.getString("name1")??""; 
+   print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkshareed$firstnam");
+  });
+ }
+
+
+
+
+
 }

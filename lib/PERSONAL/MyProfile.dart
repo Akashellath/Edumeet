@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class Myprofile extends StatefulWidget {
   const Myprofile({super.key});
@@ -34,8 +36,12 @@ class _MyprofileState extends State<Myprofile> {
   String Username = "";
   String ImgUrl = "";
   String FirstName = "";
+  String Middlename = "";
+  String Lastname = "";
   String Parent = "";
-
+  var firstnamecontroller = TextEditingController();
+  var secondnamecoldroller = TextEditingController();
+  var lastnamecontroller = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -209,7 +215,19 @@ class _MyprofileState extends State<Myprofile> {
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    width: 8,
+                    width: 5,
+                  ), 
+                  Text(Middlename,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(Lastname,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)), SizedBox(
+                    width: 5,
                   ),
                   IconButton(
                     onPressed: () {
@@ -236,6 +254,7 @@ class _MyprofileState extends State<Myprofile> {
                                 Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    controller: firstnamecontroller,
                                     decoration: InputDecoration(
                                         hintText: "First Name",
                                         hintStyle: GoogleFonts.rajdhani(
@@ -246,6 +265,7 @@ class _MyprofileState extends State<Myprofile> {
                                 Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    controller: secondnamecoldroller,
                                     decoration: InputDecoration(
                                         hintText: "Middle Name",
                                         hintStyle: GoogleFonts.rajdhani(
@@ -256,6 +276,7 @@ class _MyprofileState extends State<Myprofile> {
                                 Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    controller: lastnamecontroller,
                                     decoration: InputDecoration(
                                         hintText: "Last Name",
                                         hintStyle: GoogleFonts.rajdhani(
@@ -265,21 +286,26 @@ class _MyprofileState extends State<Myprofile> {
                                 ),
                                 Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      height: 70,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                          color: const Color.fromARGB(
-                                              255, 255, 17, 0),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Center(
-                                        child: Text(
-                                          "Save",
-                                          style: GoogleFonts.rajdhani(
-                                            color: Colors.white,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.w600,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        EditProfilenmePost();
+                                      },
+                                      child: Container(
+                                        height: 70,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                255, 255, 17, 0),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Center(
+                                          child: Text(
+                                            "Save",
+                                            style: GoogleFonts.rajdhani(
+                                              color: Colors.white,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -291,7 +317,8 @@ class _MyprofileState extends State<Myprofile> {
                       );
                     },
                     icon: Icon(Icons.edit),
-                  )
+                  ),
+                 
                 ],
               ),
               Row(
@@ -917,9 +944,67 @@ class _MyprofileState extends State<Myprofile> {
       Username = result.data.username;
       ImgUrl = result.data.profileImageUrl;
       FirstName = result.data.firstName;
+      Middlename = result.data.middleName;
+      Lastname = result.data.lastName;
       Parent = result.data.parents.firstName;
       print(
           "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$ImgUrl");
     });
+  }
+
+  void EditProfilenmePost() async {
+    final Firstnname = firstnamecontroller.text;
+    final Secondname = secondnamecoldroller.text;
+    final Lastname = lastnamecontroller.text;
+    if (Firstnname.isEmpty) {
+      showErrorMessage("Enter first name");
+    } else if (Secondname.isEmpty) {
+      showErrorMessage("enter second name");
+    } else if (Lastname.isEmpty) {
+      showErrorMessage("Enter last name ");
+    } else {
+      final formdata = FormData.fromMap({
+        "first_name": Firstnname,
+        "middle_name": Secondname,
+        "last_name": Lastname
+      });
+      final result = await Apiclass().EditProfileNameApi(formdata);
+      if (result != null) {
+        if (result.status == 1) {
+          showSuccessMessage("Name changed Sucsessfully");
+        }
+      } else {
+        showErrorMessage("operation Failed");
+      }
+    }
+  }
+
+  void showErrorMessage(String message) {
+    MotionToast.error(
+      title: Text("Error"),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
+  }
+
+  void showSuccessMessage(String message) {
+    MotionToast.success(
+      title: const Text(
+        'Success',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      description: Text(message),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: false,
+    ).show(context);
   }
 }
