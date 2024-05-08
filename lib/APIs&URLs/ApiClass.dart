@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/AssignedLeaveModel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DashboardModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EditProfilrname.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
@@ -40,20 +41,30 @@ class Apiclass {
     }
   }
 
-  Future<ProfilePageModel?> profielpageApi() async {
-    SharedPreferences sharedPreferences1 =
-        await SharedPreferences.getInstance();
-    var tok = sharedPreferences1.getString("Token");
-    print("aaaaaaeeeeeeeeeeeeeeeeeeeeeee");
-    print("token${tok}");
-    final result = await dio.get(url.BaseUrl + url.DashbordPageUrl,
-        options: Options(headers: {
-          "content": "application/json",
+  // Future<ProfilePageModel?> profielpageApi() async {
+  //   SharedPreferences sharedPreferences1 =
+  //       await SharedPreferences.getInstance();
+  //   var tok = sharedPreferences1.getString("Token");
+  //   print("aaaaaaeeeeeeeeeeeeeeeeeeeeeee");
+  //   print("token${tok}");
+  //   final result = await dio.get(url.BaseUrl + url.DashbordPageUrl,
+  //       options: Options(headers: {
+  //         "content": "application/json",
+  //         "Accepts": "application/json",
+  //         "Authorization": "Bearer $tok"
+  //       }));
+  //   print("ppppppppppppppppppAAAPPPIII testingggggggggg${result}");
+  //   return ProfilePageModel.fromJson(result.data);
+  // }
+
+  Future<Dashboard?>DashBoardApi()async{
+    print("hello");
+    SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+    var ttok=sharedPreferences.getString("Token");
+    final result=await  dio.get(url.BaseUrl+url.DashbordPageUrl,options: Options(headers: {  "content": "application/json",
           "Accepts": "application/json",
-          "Authorization": "Bearer $tok"
-        }));
-    print("ppppppppppppppppppAAAPPPIII testingggggggggg${result}");
-    return ProfilePageModel.fromJson(result.data);
+          "Authorization": "Bearer $ttok"}));
+          return Dashboard.fromJson(result.data);
   }
 
   Future<MyProfileDetails?> MyProfilepageApi() async {

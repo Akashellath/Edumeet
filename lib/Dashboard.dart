@@ -1,11 +1,13 @@
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/DrawerSettings.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
+import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
 
 import 'package:edumeet_project_irohub/noticePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class profilePaeg extends StatefulWidget {
   const profilePaeg({super.key});
@@ -66,11 +68,19 @@ class _profilePaegState extends State<profilePaeg> {
     headed by respective teachers."""
   ];
   String firstnam = "";
+  String middlename="";
+  String Lastname="";
   String regno = "";
   String clss = "";
-  String Dob = "";
+  String Dateofbirth = "";
   String divsn = "";
   String parentnam = "";
+   String code = "";
+    String parent = "";
+     String profileimaageUrl= "";
+     String profileImage="";
+     String ParentProfileImg="";
+
 
   @override
   void initState() {
@@ -247,7 +257,7 @@ class _profilePaegState extends State<profilePaeg> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text("Division-",
+                                          Text("   Division-",
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)
@@ -271,7 +281,7 @@ class _profilePaegState extends State<profilePaeg> {
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)),
-                                          Text(Dob,
+                                          Text(Dateofbirth,
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -294,7 +304,7 @@ class _profilePaegState extends State<profilePaeg> {
                           shadowColor: Colors.black,
                           child: CircleAvatar(
                             backgroundImage:
-                                AssetImage("Asset/FB_IMG_1659716185316.jpg"),
+                                NetworkImage(profileimaageUrl),
                             backgroundColor: Colors.amber,
                             radius: 60,
                           ),
@@ -315,8 +325,8 @@ class _profilePaegState extends State<profilePaeg> {
                         left: 0,
                         right: 0,
                         child: CircleAvatar(
-                          backgroundImage: AssetImage(
-                            "Asset/iconOfParent.jpeg",
+                          backgroundImage: NetworkImage(
+                            ParentProfileImg,
                           ),
                           radius: 48,
                           backgroundColor: Color.fromARGB(255, 244, 241, 240),
@@ -427,35 +437,33 @@ class _profilePaegState extends State<profilePaeg> {
     );
   }
 
-  void Dashboardpagedetails() async {
+  void Dashboardpagedetails() async {print("ooooooooooooooooooooooooooooooooooooooooooooookk");
     print(
         "aaaaaaaaaaaaasasaassasasasasasasasasasasasasasasasasasssssssssasasasasasa");
-    final result = await Apiclass().profielpageApi();
+    final result = await Apiclass().DashBoardApi();
     print("asdfghjklasdfghjklasdfghjkl");
     setState(() {
-      firstnam = result!.data[0].firstName;
-      print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrr $firstnam");
-      regno = result.data[0].regNumber;
-      clss = result.data[0].datumClass;
-      Dob = result.data[0].dob;
-      divsn = result.data[0].divisions.name;
-      parentnam = result.data[0].parents.firstName;
-      saveNameData();
+    firstnam=result!.student.firstName +" "+result.student.middleName+" "+result.student.lastName;
+    // middlename=result.student.middleName;
+    // Lastname=result.student.lastName;
+    regno=result.student.regNumber;
+    clss=result.student.classname.name;
+    divsn=result.student.divisions.name;
+    parentnam=result.student.parents.firstName + " " + result.student.parents.lastName;
+    
+    // parentnam=result.student.parents.imageUrl;
+    profileimaageUrl=result.student.profileImageUrl;
+profileImage=result.student.profileImage;
+ParentProfileImg=result.student.parents.imageUrl;
+      print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm$profileimaageUrl");
+      saveNameData;
+      saveProfileImage(profileimaageUrl);
     });
   }
   
 
 
-
-
- Future<void>saveNameData()async{"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
-  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  setState(() {
-    sharedPreferences.setString("name1", firstnam);
-   var profilename =sharedPreferences.getString("name1")??""; 
-   print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkshareed$firstnam");
-  });
- }
+ 
 
 
 

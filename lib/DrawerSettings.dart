@@ -31,12 +31,16 @@ class drawerwidget extends StatefulWidget {
 class _drawerwidgetState extends State<drawerwidget> {
   var logoutData = "";
   var profilename="";
+  var profileimg="";
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   //  GetLogoutData();
   loadNameData();
+   LoadProfileImg();
+  
+  
   }
 
   @override
@@ -58,7 +62,7 @@ class _drawerwidgetState extends State<drawerwidget> {
                       radius: 45,
                       child: CircleAvatar(
                         backgroundImage:
-                            AssetImage("Asset/FB_IMG_1659716185316.jpg"),
+                            NetworkImage("$profileimg"),
                         backgroundColor: const Color.fromARGB(255, 255, 17, 0),
                         radius: 42,
                       ),
@@ -349,6 +353,20 @@ class _drawerwidgetState extends State<drawerwidget> {
     
  }); 
 }
+
+
+void LoadProfileImg()async{
+  print("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  setState(() {
+    profileimg=sharedPreferences.getString("profileimg")??"";
+  print("llllllllllllllllllllllllllllllllllllllllllllllllllllll$profileimg");
+  });
+}
+
+
+
+
 }
 
 class textwidget extends StatelessWidget {
