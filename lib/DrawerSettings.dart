@@ -356,7 +356,7 @@ class _drawerwidgetState extends State<drawerwidget> {
 
 
 void LoadProfileImg()async{
-  print("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
+
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   setState(() {
     profileimg=sharedPreferences.getString("profileimg")??"";

@@ -175,7 +175,7 @@ class _leaveApplyState extends State<leaveApply> {
                                             children: [
                                               Text(
                                                 dataa[index]
-                                                    .fromDate
+                                                    .fromDate.year
                                                     .toString(),
                                                 style: TextStyle(
                                                     fontSize: 15,

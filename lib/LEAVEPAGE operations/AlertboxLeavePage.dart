@@ -28,7 +28,7 @@ Future<void> selectStartDate(BuildContext context) async {
     selectedStartDate = picked;
     // DateTime now = DateTime.now();
     String formmattedStartDate =
-        DateFormat("yyyy-MM-dd").format(selectedStartDate);
+        DateFormat("dd-MM-yyyy").format(selectedStartDate);
     StartingDateController.text = formmattedStartDate.toString();
   }
 }
@@ -46,7 +46,7 @@ Future<void> selectEndDate(BuildContext context) async {
   if (picked != null && picked != selectedEndDate) {
     selectedEndDate = picked;
     // DateTime now = DateTime.now();
-    String formattedEndDate = DateFormat("yyyy-MM-dd").format(selectedEndDate);
+    String formattedEndDate = DateFormat("dd-MM-yyyy").format(selectedEndDate);
     EndDateController.text = formattedEndDate.toString();
   }
 }
@@ -99,9 +99,7 @@ Future<void> selectEndTime(BuildContext context) async {
 
 var category = ["Sick", "Casual", "etc"];
 Future<dynamic> LeaveApplicationAlertbox(BuildContext context) {
-
-
-void showErrorMessage(String message) {
+  void showErrorMessage(String message) {
     MotionToast.error(
       title: Text("Error"),
       description: Text(message),
@@ -130,41 +128,48 @@ void showErrorMessage(String message) {
     ).show(context);
   }
 
-  
   void LeaveApplyAlertPost() async {
-    final start_date = StartingDateController.text;
-    final end_date = EndDateController.text;
-    final start_time = StartingTimeController.text;
-    final end_time = EndTimeController.text;
+    print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+    final startdate = StartingDateController.text;
+    final enddate = EndDateController.text;
+    final starttime = StartingTimeController.text;
+    final endtime = EndTimeController.text;
     final reason = Reasoncontroller.text;
-    final leave_category = categorycontroller.text;
-    if (start_date.isEmpty) {
+    final leave_category = 1;
+    if (startdate.isEmpty) {
       showErrorMessage("choose Start Date");
-    } else if (end_date.isEmpty) {
+    } else if (enddate.isEmpty) {
       showErrorMessage("choose End Date");
-    } else if (start_time.isEmpty) {
+    } else if (starttime.isEmpty) {
       showErrorMessage("choose Start time");
-    } else if (end_time.isEmpty) {
+    } else if (endtime.isEmpty) {
       showErrorMessage("choose End time");
     } else if (reason.isEmpty) {
       showErrorMessage("Enter the reason");
-    } else if (leave_category.isEmpty) {
-      showErrorMessage("choose Category");
     } else {
-      final formData2 = FormData.fromMap({
-        "start_date": start_time,
-        "end_date": end_time,
-        "start_time": start_time,
-        "end_time": end_time,
+      final formdata77 = FormData.fromMap({
+       "start_date": startdate,
+        "end_date": enddate,
+        "start_time": starttime,
+        "end_time": endtime,
+        "leave_category": "2",
         "reason": reason,
-        "leave_category": leave_category
-      });final result = await Apiclass().LeaveApplySaveApi(formData2);
-    if (result != null) {  if (result.status==1){
-      showSuccessMessage("Applied Sucsesfully");
-    }}else {showErrorMessage("Application Failed");}
-  
+        "attachment":""
+
+
+      });print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww33333333$leave_category,$reason.$endtime$starttime$startdate$enddate");
+      print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb66666666${formdata77}");
+      final result = await Apiclass().LeaveApplySaveApi(formdata77);
+      print("wwwwwwwwwwwwwwwwwwwwwwwww2222222{${result }");
+      if (result != null) {
+        if (result.status == 1) {
+          print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww2222222222");
+          showSuccessMessage("Applied Sucsesfully");
+        }
+      } else {
+        showErrorMessage("Application Failed");
+      }
     }
-    ;
     
   }
 
@@ -173,7 +178,6 @@ void showErrorMessage(String message) {
   //
   //
 
-  
   return showDialog(
       context: context,
       builder: (alert) => AlertDialog(
@@ -302,9 +306,10 @@ void showErrorMessage(String message) {
 
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(onTap: () {
-                        LeaveApplyAlertPost();
-                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          LeaveApplyAlertPost();
+                        },
                         child: Container(
                           height: 50,
                           width: 150,
@@ -330,9 +335,4 @@ void showErrorMessage(String message) {
             ),
             actions: [],
           ));
-
-
-
-
 }
-

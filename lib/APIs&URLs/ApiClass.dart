@@ -13,7 +13,7 @@ import 'package:edumeet_project_irohub/MODELCLASS/LogoutModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/MyProfilePageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/Staff-Directory.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/leaveapplydata.dart';
-import 'package:edumeet_project_irohub/MODELCLASS/profilepagemodel.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Apiclass {
@@ -189,16 +189,17 @@ Future<LeaveApplyData?>leaveapplydataUrl()async{
 
 
 
-Future<LeaveApplySave?>LeaveApplySaveApi(FormData formData)async{
+Future<LeaveApplySave?>LeaveApplySaveApi(FormData formData)async{print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy$formData");
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   var tokk=sharedPreferences.getString("Token");
   final result=await dio.post(url.LeaveApplySaveUrl,data: formData,options: Options(headers: { 
      "Content": "application/json",
       "Accepts" : "application/json",
-      "Authorization": "Bearer $tokk"}));
+      "Authorization": "Bearer $tokk"})
+      );print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr$result");
       return LeaveApplySave.fromJson(result.data);
+      
 }
-
 
 Future<EditProfileName?>EditProfileNameApi(FormData formData)async{
 SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
