@@ -137,7 +137,7 @@ class _profilePaegState extends State<profilePaeg> {
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height / 1.8,
+              height: MediaQuery.of(context).size.height / 1.6,
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -335,7 +335,7 @@ class _profilePaegState extends State<profilePaeg> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Text(parentnam,
                         style: GoogleFonts.rajdhani(
                             color: Colors.white,
