@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
+import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:motion_toast/motion_toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Myprofile extends StatefulWidget {
   const Myprofile({super.key});
@@ -18,6 +20,7 @@ class Myprofile extends StatefulWidget {
 }
 
 class _MyprofileState extends State<Myprofile> {
+  String parentimgg="";
   String Gender = "";
   String STD = "";
   String Division = "";
@@ -47,6 +50,8 @@ class _MyprofileState extends State<Myprofile> {
     // TODO: implement initState
     super.initState();
     myprofilepage();
+    LoadparentImg();
+    
   }
 
   // PROFILE IMAGE PICKER
@@ -364,7 +369,7 @@ class _MyprofileState extends State<Myprofile> {
                           radius: 35,
                           backgroundColor:
                               const Color.fromARGB(255, 255, 17, 0),
-                          child: CircleAvatar(
+                          child: CircleAvatar(backgroundImage: NetworkImage("http://iroidtechnologies.in/jeetmeet/uploads/images/default.png"),
                             radius: 32,
                             backgroundColor:
                                 const Color.fromARGB(255, 166, 166, 166),
@@ -919,6 +924,18 @@ class _MyprofileState extends State<Myprofile> {
     );
   }
 
+
+
+  void LoadparentImg()async{"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
+
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  setState(() {
+    parentimgg=sharedPreferences.getString("image1")??"";
+  print("llllllllllllllllllllllllllllllllllllllllllllllllllllll  pann$parentimgg");
+  });
+}
+
+
   void myprofilepage() async {
     print(
         "aaaaaaaaaaaaaaaaaaaaaaaakkkkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaaassssssssssssshhhhhhhhhhhh");
@@ -949,6 +966,7 @@ class _MyprofileState extends State<Myprofile> {
       Parent = result.data.parents.firstName;
       print(
           "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$ImgUrl");
+          
     });
   }
 

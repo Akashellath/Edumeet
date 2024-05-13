@@ -83,10 +83,10 @@ class _drawerwidgetState extends State<drawerwidget> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
-                            child: Text("$profilename",
+                            child: Text("$profilename",overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.barlowSemiCondensed(
                                     color: Colors.white,
-                                    fontSize: 30,
+                                    fontSize: 25,
                                     fontWeight: FontWeight.w400)),
                           ),
                         ],
@@ -349,7 +349,7 @@ class _drawerwidgetState extends State<drawerwidget> {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
  setState(() {
   profilename =sharedPreferences.getString("name1")??""; 
-  print("ddddddddddddddddddddddddddddddddddddddddd z$profilename");
+  print("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd z$profilename");
     
  }); 
 }

@@ -6,7 +6,7 @@ import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
 import 'package:edumeet_project_irohub/noticePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 
 class profilePaeg extends StatefulWidget {
@@ -67,6 +67,7 @@ class _profilePaegState extends State<profilePaeg> {
     students are grouped into four houses.Each group is 
     headed by respective teachers."""
   ];
+  
   String firstnam = "";
   String middlename="";
   String Lastname="";
@@ -137,7 +138,8 @@ class _profilePaegState extends State<profilePaeg> {
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height / 1.6,
+              height: MediaQuery.of(context).size.height / 1.6
+              ,
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -325,7 +327,7 @@ class _profilePaegState extends State<profilePaeg> {
                         left: 0,
                         right: 0,
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage(
+                          backgroundImage: NetworkImage(scale: 1.0,
                             ParentProfileImg,
                           ),
                           radius: 48,
@@ -456,8 +458,9 @@ class _profilePaegState extends State<profilePaeg> {
 profileImage=result.student.profileImage;
 ParentProfileImg=result.student.parents.imageUrl;
       print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm$profileimaageUrl");
-      saveNameData;
+      saveNameData(firstnam);
       saveProfileImage(profileimaageUrl);
+      saveparentimgData(ParentProfileImg);
     });
   }
   
