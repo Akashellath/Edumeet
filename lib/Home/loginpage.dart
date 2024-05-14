@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
-import 'APIs&URLs/ApiClass.dart';
-import 'package:edumeet_project_irohub/ForgotPassword.dart';
-import 'package:edumeet_project_irohub/Dashboard.dart';
+import '../APIs&URLs/ApiClass.dart';
+import 'package:edumeet_project_irohub/Home/ForgotPassword.dart';
+import 'package:edumeet_project_irohub/Home/Dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_toast/motion_toast.dart';
 

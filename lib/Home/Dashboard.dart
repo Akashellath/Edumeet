@@ -1,13 +1,11 @@
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
-import 'package:edumeet_project_irohub/DrawerSettings.dart';
+import 'package:edumeet_project_irohub/Home/DrawerSettings.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
 
-import 'package:edumeet_project_irohub/noticePage.dart';
+import 'package:edumeet_project_irohub/Home/noticePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
 
 class profilePaeg extends StatefulWidget {
   const profilePaeg({super.key});
@@ -67,102 +65,100 @@ class _profilePaegState extends State<profilePaeg> {
     students are grouped into four houses.Each group is 
     headed by respective teachers."""
   ];
-  
+
   String firstnam = "";
-  String middlename="";
-  String Lastname="";
-  String regno = "";
-  String clss = "";
-  String Dateofbirth = "";
-  String divsn = "";
-  String parentnam = "";
-   String code = "";
-    String parent = "";
-     String profileimaageUrl= "";
-     String profileImage="";
-     String ParentProfileImg="";
+   String middlename = "";
+    String Lastname = "";
+     String regno = "";
+      String clss = "";
+       String Dateofbirth = "";
+        String divsn = "";
+         String parentnam = "";
+          String code = "";
+           String parent = "";
+            String profileimaageUrl = "";
+             String profileImage = "";
+              String ParentProfileImg = "";
 
-
-  @override
-  void initState() {
+              @override
+         void initState() {
     // TODO: implement initState
     super.initState();
-    Dashboardpagedetails();
-    // saveNameData();
+   Dashboardpagedetails();
+ // saveNameData();
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
-    var scaffoldKey = GlobalKey<ScaffoldState>();
+   var scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: scaffoldKey,
+     key: scaffoldKey,
       backgroundColor: Color.fromARGB(255, 237, 236, 236),
-      appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-              onPressed: () {
-                scaffoldKey.currentState?.openDrawer();
-              },
+       appBar: AppBar(
+        automaticallyImplyLeading: false,
+         leading: IconButton(
+          onPressed: () {
+           scaffoldKey.currentState?.openDrawer();
+             },
               icon: Icon(
-                Icons.sort_outlined,
+               Icons.sort_outlined,
                 color: Colors.white,
-              )),
-          centerTitle: true,
-          title: Text("EDUMEET",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30)),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: GestureDetector(
-                child: Icon(
-                  Icons.chat_bubble_outline_rounded,
-                  color: Colors.white,
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => chatpage(),
-                      ));
-                },
-              ),
-            )
-          ],
-          backgroundColor: const Color.fromARGB(255, 255, 17, 0)),
-      drawer: drawerwidget(),
-      body: SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 1.6
-              ,
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 2.2,
-                        spreadRadius: 0.0,
-                        offset: Offset(2.0, 2.0))
-                  ],
-                  color: Color.fromARGB(255, 255, 17, 0),
-                  // borderRadius:
-                  // BorderRadiusDirectional.vertical(
-                  //     bottom: Radius.elliptical(
-                  //         MediaQuery.of(context).size.width, 100.0))
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(300, 90))),
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 50, left: 20, right: 20, bottom: 50),
-                        child: Container(
+                 )),
+                  centerTitle: true,
+                   title: Text("EDUMEET",
+                    style: TextStyle(
+                     color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                       fontSize: 30)),
+                        actions: [
+                         Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                           child: GestureDetector(
+                            child: Icon(
+                             Icons.chat_bubble_outline_rounded,
+                              color: Colors.white,
+                               ),
+                               onTap: () {
+                                Navigator.push(
+                                 context,
+                                  MaterialPageRoute(
+                                   builder: (context) => chatpage(),
+                                    ));
+                                     },
+                                      ),
+                                       )
+                                        ],
+                                         backgroundColor: const Color.fromARGB(255, 255, 17, 0)),
+                                          drawer: drawerwidget(),
+                                           body: SingleChildScrollView(
+                                            physics: ScrollPhysics(),
+                                             child: Column(
+                                              children: [
+                                               Container(
+                                                height: MediaQuery.of(context).size.height / 1.6,
+                                                 decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                   BoxShadow(
+                                                    color: Colors.black,
+                                                     blurRadius: 2.2,
+                                                      spreadRadius: 0.0,
+                                                        offset: Offset(2.0, 2.0))
+                                                        ],
+                                                         color: Color.fromARGB(255, 255, 17, 0),
+                                                          // borderRadius:
+                                                           // BorderRadiusDirectional.vertical(
+                                                            //     bottom: Radius.elliptical(
+                                                             //         MediaQuery.of(context).size.width, 100.0))
+                                                              borderRadius: BorderRadius.vertical(
+                                                               bottom: Radius.elliptical(300, 90))),
+                                                                child: Column(
+                                                                 children: [
+                                                                  Stack(
+                                                                   children: [
+                                                                    Padding(
+                                                                     padding: const EdgeInsets.only(
+                                                                      top: 50, left: 20, right: 20, bottom: 50),
+                                                                       child: Container(
                           padding: EdgeInsets.all(10),
                           height: 270,
                           width: double.infinity,
@@ -305,8 +301,7 @@ class _profilePaegState extends State<profilePaeg> {
                           elevation: 10,
                           shadowColor: Colors.black,
                           child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(profileimaageUrl),
+                            backgroundImage: NetworkImage(profileimaageUrl),
                             backgroundColor: Colors.amber,
                             radius: 60,
                           ),
@@ -326,12 +321,14 @@ class _profilePaegState extends State<profilePaeg> {
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(scale: 1.0,
-                            ParentProfileImg,
+                        child: CircleAvatar(radius: 48,
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              ParentProfileImg,
+                            ),
+                            radius: 48,
+                            backgroundColor: Color.fromARGB(255, 244, 241, 240),
                           ),
-                          radius: 48,
-                          backgroundColor: Color.fromARGB(255, 244, 241, 240),
                         ),
                       )
                     ],
@@ -398,8 +395,9 @@ class _profilePaegState extends State<profilePaeg> {
                                           titlename: noticeTitle[index],
                                           noticeDetaling: noticeDetails[index],
                                         ),
-                                      ));   print(
-                                            "nooooooooottttttiiiicccceeeeeeepppppaaaggggggee$noticeTitle");
+                                      ));
+                                  print(
+                                      "nooooooooottttttiiiicccceeeeeeepppppaaaggggggee$noticeTitle");
                                 },
                                 child: ListTile(
                                   title: Text(
@@ -419,7 +417,6 @@ class _profilePaegState extends State<profilePaeg> {
                                               builder: (context) =>
                                                   noticePage(),
                                             ));
-                                     
                                       },
                                       icon:
                                           Icon(Icons.arrow_forward_ios_sharp)),
@@ -439,37 +436,36 @@ class _profilePaegState extends State<profilePaeg> {
     );
   }
 
-  void Dashboardpagedetails() async {print("ooooooooooooooooooooooooooooooooooooooooooooookk");
+  void Dashboardpagedetails() async {
+    print("ooooooooooooooooooooooooooooooooooooooooooooookk");
     print(
         "aaaaaaaaaaaaasasaassasasasasasasasasasasasasasasasasasssssssssasasasasasa");
     final result = await Apiclass().DashBoardApi();
     print("asdfghjklasdfghjklasdfghjkl");
     setState(() {
-    firstnam=result!.student.firstName +" "+result.student.middleName+" "+result.student.lastName;
-    // middlename=result.student.middleName;
-    // Lastname=result.student.lastName;
-    regno=result.student.regNumber;
-    clss=result.student.classname.name;
-    divsn=result.student.divisions.name;
-    parentnam=result.student.parents.firstName + " " + result.student.parents.lastName;
-    
-    // parentnam=result.student.parents.imageUrl;
-    profileimaageUrl=result.student.profileImageUrl;
-profileImage=result.student.profileImage;
-ParentProfileImg=result.student.parents.imageUrl;
-      print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm$profileimaageUrl");
+      firstnam = result!.student.firstName +
+          " " +
+          result.student.middleName +
+          " " +
+          result.student.lastName;
+      // middlename=result.student.middleName;
+      // Lastname=result.student.lastName;
+      regno = result.student.regNumber;
+      clss = result.student.classname.name;
+      divsn = result.student.divisions.name;
+      parentnam = result.student.parents.firstName +
+          " " +
+          result.student.parents.lastName;
+
+      // parentnam=result.student.parents.imageUrl;
+      profileimaageUrl = result.student.profileImageUrl;
+      profileImage = result.student.profileImage;
+      ParentProfileImg = result.student.parents.imageUrl;
+      print(
+          "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm$profileimaageUrl");
       saveNameData(firstnam);
       saveProfileImage(profileimaageUrl);
       saveparentimgData(ParentProfileImg);
     });
   }
-  
-
-
- 
-
-
-
-
-
 }

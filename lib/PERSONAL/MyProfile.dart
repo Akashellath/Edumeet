@@ -369,7 +369,7 @@ class _MyprofileState extends State<Myprofile> {
                           radius: 35,
                           backgroundColor:
                               const Color.fromARGB(255, 255, 17, 0),
-                          child: CircleAvatar(backgroundImage: NetworkImage("http://iroidtechnologies.in/jeetmeet/uploads/images/default.png"),
+                          child: CircleAvatar(backgroundImage: NetworkImage("$parentimgg"),
                             radius: 32,
                             backgroundColor:
                                 const Color.fromARGB(255, 166, 166, 166),
@@ -931,7 +931,7 @@ class _MyprofileState extends State<Myprofile> {
   SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
   setState(() {
     parentimgg=sharedPreferences.getString("image1")??"";
-  print("llllllllllllllllllllllllllllllllllllllllllllllllllllll  pann$parentimgg");
+  print("llllllllllllllllllllllllllllllllllllllllllllllllllllll  $parentimgg");
   });
 }
 

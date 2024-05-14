@@ -26,7 +26,6 @@ class _TimetableState extends State<Timetable> {
           style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         ),
       ),
-      
     );
   }
 }
