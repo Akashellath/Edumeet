@@ -3,6 +3,7 @@ import 'package:edumeet_project_irohub/MODELCLASS/AssignedLeaveModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DashboardModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EditProfilrname.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/Editprofileimg.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/LeaveApplySavepost.dart';
 
@@ -211,4 +212,18 @@ final result=await dio.post(url.EditProfileNAmeUrl,data: formData,options: Optio
 } ));
 return EditProfileName.fromJson(result.data);
 }
+
+Future<Editprofileimg?>EditProfileimgApi(FormData formData)async{
+  SharedPreferences preferences=await SharedPreferences.getInstance();
+  var tokkeen=preferences.getString("Token");
+  final result=await dio.post(url.EditProfileimgUrl,data: formData,options: Options(headers: {
+"Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $tokkeen"
+  }));
+}
+
+
+
+ 
 }

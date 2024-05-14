@@ -817,16 +817,12 @@ class _MyprofileState extends State<Myprofile> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    Email,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.rajdhani(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
+                              Text(
+                                Email,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.rajdhani(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
                               ),
                               Row(
                                 children: [
