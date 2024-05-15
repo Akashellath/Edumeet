@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
-import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +19,7 @@ class Myprofile extends StatefulWidget {
 }
 
 class _MyprofileState extends State<Myprofile> {
-  String parentimgg="";
+  String parentimgg = "";
   String Gender = "";
   String STD = "";
   String Division = "";
@@ -51,7 +50,7 @@ class _MyprofileState extends State<Myprofile> {
     super.initState();
     myprofilepage();
     LoadparentImg();
-    
+  
   }
 
   // PROFILE IMAGE PICKER
@@ -96,6 +95,7 @@ class _MyprofileState extends State<Myprofile> {
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
+        EditprofileimgPost(_profileImage);
       });
     }
   }
@@ -221,7 +221,7 @@ class _MyprofileState extends State<Myprofile> {
                   ),
                   SizedBox(
                     width: 5,
-                  ), 
+                  ),
                   Text(Middlename,
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
@@ -231,7 +231,8 @@ class _MyprofileState extends State<Myprofile> {
                   Text(Lastname,
                       overflow: TextOverflow.ellipsis,
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)), SizedBox(
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  SizedBox(
                     width: 5,
                   ),
                   IconButton(
@@ -323,7 +324,6 @@ class _MyprofileState extends State<Myprofile> {
                     },
                     icon: Icon(Icons.edit),
                   ),
-                 
                 ],
               ),
               Row(
@@ -369,7 +369,8 @@ class _MyprofileState extends State<Myprofile> {
                           radius: 35,
                           backgroundColor:
                               const Color.fromARGB(255, 255, 17, 0),
-                          child: CircleAvatar(backgroundImage: NetworkImage("$parentimgg"),
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage("$parentimgg"),
                             radius: 32,
                             backgroundColor:
                                 const Color.fromARGB(255, 166, 166, 166),
@@ -821,8 +822,7 @@ class _MyprofileState extends State<Myprofile> {
                                 Email,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.rajdhani(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500),
+                                    fontSize: 20, fontWeight: FontWeight.w500),
                               ),
                               Row(
                                 children: [
@@ -920,17 +920,16 @@ class _MyprofileState extends State<Myprofile> {
     );
   }
 
+  void LoadparentImg() async {
+    "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
 
-
-  void LoadparentImg()async{"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
-
-  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
-  setState(() {
-    parentimgg=sharedPreferences.getString("image1")??"";
-  print("llllllllllllllllllllllllllllllllllllllllllllllllllllll  $parentimgg");
-  });
-}
-
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      parentimgg = sharedPreferences.getString("image1") ?? "";
+      print(
+          "llllllllllllllllllllllllllllllllllllllllllllllllllllll  $parentimgg");
+    });
+  }
 
   void myprofilepage() async {
     print(
@@ -962,7 +961,6 @@ class _MyprofileState extends State<Myprofile> {
       Parent = result.data.parents.firstName;
       print(
           "akkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk$ImgUrl");
-          
     });
   }
 
@@ -989,6 +987,21 @@ class _MyprofileState extends State<Myprofile> {
         }
       } else {
         showErrorMessage("operation Failed");
+      }
+    }
+  }
+
+  void EditprofileimgPost(prof) async {print("tttttttttttttttttttttttttttttttttttttttttt");
+    final profile_image = _profileImage;
+    print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv$prof");
+    final formData = FormData.fromMap({"profile_image": prof});
+    final result = await Apiclass().EditProfileimgApi(formData);
+    print("fffffffffffffffffffffffffffffffffffffffffff helloooooiii $result");
+    if (result != null) {
+      if (result.status == 1) {
+        showSuccessMessage("Image uploaded");
+      } else {
+        showErrorMessage("operation failed");
       }
     }
   }

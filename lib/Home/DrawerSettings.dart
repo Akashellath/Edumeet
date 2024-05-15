@@ -275,9 +275,27 @@ class _drawerwidgetState extends State<drawerwidget> {
         content: Row(
           children: [
             (GestureDetector(
-              onTap: () {
+              onTap: ()async {
+                
+                
+                
+                SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setString('email', 'useremail@gmail.com');
+
+
+
+// 
+//      LOG OUT 
+// 
+
+
                 GetLogoutData();
-                print("ssssssssssssssssssssssssssssssssssssssss");
+
+                
+//                 print("ssssssssssssssssssssssssssssssssssssssss");
+// 
+// 
 //
               },
               child: Container(

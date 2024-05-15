@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/Home/DrawerSettings.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
@@ -67,98 +68,98 @@ class _profilePaegState extends State<profilePaeg> {
   ];
 
   String firstnam = "";
-   String middlename = "";
-    String Lastname = "";
-     String regno = "";
-      String clss = "";
-       String Dateofbirth = "";
-        String divsn = "";
-         String parentnam = "";
-          String code = "";
-           String parent = "";
-            String profileimaageUrl = "";
-             String profileImage = "";
-              String ParentProfileImg = "";
+  String middlename = "";
+  String Lastname = "";
+  String regno = "";
+  String clss = "";
+  String Dateofbirth = "";
+  String divsn = "";
+  String parentnam = "";
+  String code = "";
+  String parent = "";
+  String profileimaageUrl = "";
+  String profileImage = "";
+  String ParentProfileImg = "";
 
-              @override
-         void initState() {
+  @override
+  void initState() {
     // TODO: implement initState
     super.initState();
-   Dashboardpagedetails();
- // saveNameData();
+    Dashboardpagedetails();
+    // saveNameData();
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
-   var scaffoldKey = GlobalKey<ScaffoldState>();
+    var scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-     key: scaffoldKey,
+      key: scaffoldKey,
       backgroundColor: Color.fromARGB(255, 237, 236, 236),
-       appBar: AppBar(
-        automaticallyImplyLeading: false,
-         leading: IconButton(
-          onPressed: () {
-           scaffoldKey.currentState?.openDrawer();
-             },
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                scaffoldKey.currentState?.openDrawer();
+              },
               icon: Icon(
-               Icons.sort_outlined,
+                Icons.sort_outlined,
                 color: Colors.white,
-                 )),
-                  centerTitle: true,
-                   title: Text("EDUMEET",
-                    style: TextStyle(
-                     color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                       fontSize: 30)),
-                        actions: [
-                         Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                           child: GestureDetector(
-                            child: Icon(
-                             Icons.chat_bubble_outline_rounded,
-                              color: Colors.white,
-                               ),
-                               onTap: () {
-                                Navigator.push(
-                                 context,
-                                  MaterialPageRoute(
-                                   builder: (context) => chatpage(),
-                                    ));
-                                     },
-                                      ),
-                                       )
-                                        ],
-                                         backgroundColor: const Color.fromARGB(255, 255, 17, 0)),
-                                          drawer: drawerwidget(),
-                                           body: SingleChildScrollView(
-                                            physics: ScrollPhysics(),
-                                             child: Column(
-                                              children: [
-                                               Container(
-                                                height: MediaQuery.of(context).size.height / 1.6,
-                                                 decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                   BoxShadow(
-                                                    color: Colors.black,
-                                                     blurRadius: 2.2,
-                                                      spreadRadius: 0.0,
-                                                        offset: Offset(2.0, 2.0))
-                                                        ],
-                                                         color: Color.fromARGB(255, 255, 17, 0),
-                                                          // borderRadius:
-                                                           // BorderRadiusDirectional.vertical(
-                                                            //     bottom: Radius.elliptical(
-                                                             //         MediaQuery.of(context).size.width, 100.0))
-                                                              borderRadius: BorderRadius.vertical(
-                                                               bottom: Radius.elliptical(300, 90))),
-                                                                child: Column(
-                                                                 children: [
-                                                                  Stack(
-                                                                   children: [
-                                                                    Padding(
-                                                                     padding: const EdgeInsets.only(
-                                                                      top: 50, left: 20, right: 20, bottom: 50),
-                                                                       child: Container(
+              )),
+          centerTitle: true,
+          title: Text("EDUMEET",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30)),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: GestureDetector(
+                child: Icon(
+                  Icons.chat_bubble_outline_rounded,
+                  color: Colors.white,
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => chatpage(),
+                      ));
+                },
+              ),
+            )
+          ],
+          backgroundColor: const Color.fromARGB(255, 255, 17, 0)),
+      drawer: drawerwidget(),
+      body: SingleChildScrollView(
+        physics: ScrollPhysics(),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height / 1.6,
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 2.2,
+                        spreadRadius: 0.0,
+                        offset: Offset(2.0, 2.0))
+                  ],
+                  color: Color.fromARGB(255, 255, 17, 0),
+                  // borderRadius:
+                  // BorderRadiusDirectional.vertical(
+                  //     bottom: Radius.elliptical(
+                  //         MediaQuery.of(context).size.width, 100.0))
+                  borderRadius: BorderRadius.vertical(
+                      bottom: Radius.elliptical(300, 90))),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 50, left: 20, right: 20, bottom: 50),
+                        child: Container(
                           padding: EdgeInsets.all(10),
                           height: 270,
                           width: double.infinity,
@@ -321,7 +322,8 @@ class _profilePaegState extends State<profilePaeg> {
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        child: CircleAvatar(radius: 48,
+                        child: CircleAvatar(
+                          radius: 48,
                           child: CircleAvatar(
                             backgroundImage: NetworkImage(
                               ParentProfileImg,
@@ -468,4 +470,6 @@ class _profilePaegState extends State<profilePaeg> {
       saveparentimgData(ParentProfileImg);
     });
   }
+
+
 }

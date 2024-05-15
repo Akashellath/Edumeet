@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/AssignedLeaveModel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DairyPostModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DashboardModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EditProfilrname.dart';
@@ -214,16 +215,35 @@ return EditProfileName.fromJson(result.data);
 }
 
 Future<Editprofileimg?>EditProfileimgApi(FormData formData)async{
+  print("99999999999999999999999999999999$formData");
   SharedPreferences preferences=await SharedPreferences.getInstance();
   var tokkeen=preferences.getString("Token");
   final result=await dio.post(url.EditProfileimgUrl,data: formData,options: Options(headers: {
 "Content": "application/json",
       "Accepts" : "application/json",
       "Authorization": "Bearer $tokkeen"
-  }));
+  }));print("22222222222222222222222222222222222222$result");
+  return Editprofileimg.fromJson(result.data);
+  
 }
 
 
+Future<diariesPostmodel?>DiaryPostApi(FormData formData)async{ print("777777777777888888888888888888 API function  ");
+SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+var ttoken=sharedPreferences.getString("Token");
+try{
+print("jhggggyfffffffffffffffffff $ttoken");
+final result = await dio.post(url.diariesUrl,data: formData,options: Options(headers: {
+   "Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $ttoken"
+})); print("7777777777777777777444444444444444444444444Apiclass444444 RESULT  ");
+return diariesPostmodel.fromJson((result.data));
+
+
+}on DioException catch(e){
+  print(e);
+}}
 
  
 }

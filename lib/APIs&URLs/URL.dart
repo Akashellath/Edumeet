@@ -13,4 +13,7 @@ class URL {
   String LeaveApplyUrl = "leave/apply";
   String LeaveApplySaveUrl = "leave/apply/save";
   String EditProfileNAmeUrl = "profile/edit_name";
+  String EditProfileimgUrl ="profile/edit_picture";
+  String DiariesPostUrl="diaries/save";
+
 }
