@@ -15,5 +15,6 @@ class URL {
   String EditProfileNAmeUrl = "profile/edit_name";
   String EditProfileimgUrl ="profile/edit_picture";
   String DiariesPostUrl="diaries/save";
+  String DiaryDeletUrl="diaries/delete";
 
 }

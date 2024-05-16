@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/SharedPreference/SharedPreference.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/Home/ForgotPassword.dart';
 import 'package:edumeet_project_irohub/Home/Dashboard.dart';
@@ -76,7 +77,25 @@ class _loginpageState extends State<loginpage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: ()async {
+
+
+                    //
+                    //
+                    // LOGOUT STAY
+                    // 
+                    // 
+                    // 
+                    
+                    SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setString('email', 'useremail@gmail.com');
+
+////
+/////
+/////
+///
+
                     loginPost();
                   },
                   child: Container(

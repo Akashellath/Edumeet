@@ -370,9 +370,9 @@ var idDIary="";
       final formmddata = FormData.fromMap({ "id":idDIary,
         "date": Date,
         "note":note});
-      // print("777777777777776666666666666666 function $formmddata");
+      print("777777777777776666666666666666 function $formmddata");
       final result = await Apiclass().DiaryPostApi(formmddata);
-      // print("77777777777777722222222222222 function $result ");
+      print("77777777777777722222222222222 function $result ");
       if (result != null) {
          print("77777777777777775555555555555 function ${result.status} ");
     

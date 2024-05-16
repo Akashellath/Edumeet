@@ -2,7 +2,9 @@ import 'dart:async';
 
 
 import 'package:edumeet_project_irohub/Home/loginpage.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DashboardModel.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() {
@@ -72,6 +74,19 @@ class _homescreenState extends State<homescreen> {
     );
     
   }
+
+
+// 
+// 
+// 
+//        LOGOUT STAY
+  // Future<void> main() async {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var email = prefs.getString('email');
+  //   print(email);
+  //   runApp(MaterialApp(home: email == null ? loginpage() : Dashboard()));
+  // }
   
 
 }
