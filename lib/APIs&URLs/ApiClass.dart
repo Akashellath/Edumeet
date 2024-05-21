@@ -3,6 +3,7 @@ import 'package:edumeet_project_irohub/MODELCLASS/AssignedLeaveModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DairyPostModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DashboardModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DiaryDeletePost.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EditProfilrname.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/Editprofileimg.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
@@ -233,7 +234,7 @@ SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
 var ttoken=sharedPreferences.getString("Token");
 try{
 print("jhggggyfffffffffffffffffff $ttoken");
-final result = await dio.post(url.diariesUrl,data: formData,options: Options(headers: {
+final result = await dio.post(url.DiariesPostUrl,data: formData,options: Options(headers: {
    "Content": "application/json",
       "Accepts" : "application/json",
       "Authorization": "Bearer $ttoken"
@@ -245,5 +246,24 @@ return diariesPostmodel.fromJson((result.data));
   print(e);
 }}
 
+
+
+Future<DairyDeletPost?>DiaryDeleteApi( FormData formData)async{print("999999999999999 API function 999999 ");
+  SharedPreferences sharedPreferences= await SharedPreferences.getInstance();
+  var ttookken =sharedPreferences.getString("Token");
+
  
+  final result=await dio.post(url.DiaryDeletUrl,data: formData,options: Options(headers: {
+ "Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $ttookken"
+   
+  } ));
+
+  print("999999999999999 RESULT 7777777$result");
+  return DairyDeletPost.fromJson((result.data));
+}
+ 
+
+
 }

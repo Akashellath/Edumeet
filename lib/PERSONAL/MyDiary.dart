@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _DiaryPageState extends State<DiaryPage> {
   var datas = [];
   var note = [];
   // var ID=  datas["id"].toString();
-var idDIary="";
+  var idDIary = "";
   var DairyDatecontroller = TextEditingController();
   var DairyNotecontroller = TextEditingController();
   @override
@@ -109,167 +110,184 @@ var idDIary="";
                     width: MediaQuery.of(context).size.width,
                     color: Color.fromARGB(255, 234, 234, 234),
                     child: ListView.builder(
-                      
                       itemBuilder: (context, index) {
-                      
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 140,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black,
-                                    blurRadius: 2.2,
-                                    spreadRadius: 0.0,
-                                    offset: Offset(1.0, 1.0))
-                              ],
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black,
-                                          blurRadius: 2.2,
-                                          spreadRadius: 0.0,
-                                          offset: Offset(2.0, 2.0))
-                                    ],
-                                    color: Color.fromARGB(255, 202, 201, 201),
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10))),
-                                child: Center(
-                                  child: Text(
-                                    datas[index].id.toString(),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: const Color.fromARGB(
-                                            255, 99, 98, 98),
-                                        fontSize: 20),
+                        idDIary = datas[index].id.toString();
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 140,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black,
+                                      blurRadius: 2.2,
+                                      spreadRadius: 0.0,
+                                      offset: Offset(1.0, 1.0))
+                                ],
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black,
+                                            blurRadius: 2.2,
+                                            spreadRadius: 0.0,
+                                            offset: Offset(2.0, 2.0))
+                                      ],
+                                      color: Color.fromARGB(255, 202, 201, 201),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10))),
+                                  child: Center(
+                                    child: Text(
+                                      datas[index].id.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: const Color.fromARGB(
+                                              255, 99, 98, 98),
+                                          fontSize: 20),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(datas[index].note,
-                                        style: GoogleFonts.rajdhani(
-                                            color:
-                                                Color.fromARGB(255, 99, 98, 98),
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold)),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text("Date:",
-                                            style: GoogleFonts.rajdhani(
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(datas[index].note,
+                                          style: GoogleFonts.rajdhani(
                                               color: Color.fromARGB(
-                                                  255, 88, 87, 87),
-                                              fontSize: 15,
-                                            )),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(datas[index].date,
-                                            style: GoogleFonts.rajdhani(
-                                              color: Color.fromARGB(
-                                                  255, 88, 87, 87),
-                                              fontSize: 15,
-                                            )),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 20),
-                                          child: Container(
-                                            height: 35,
-                                            width: 65,
-                                            decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      color: Colors.black,
-                                                      blurRadius: 2.2,
-                                                      spreadRadius: 0.0,
-                                                      offset: Offset(1.0, 1.0))
-                                                ],
+                                                  255, 99, 98, 98),
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.bold)),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text("Date:",
+                                              style: GoogleFonts.rajdhani(
                                                 color: Color.fromARGB(
-                                                    255, 255, 165, 0),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            child: Center(
-                                                child: Text("Edit",
-                                                    style: GoogleFonts.rajdhani(
-                                                        color: Color.fromARGB(
-                                                            255, 255, 255, 255),
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w600))),
+                                                    255, 88, 87, 87),
+                                                fontSize: 15,
+                                              )),
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 20, left: 15),
-                                          child: GestureDetector(
+                                          Text(datas[index].date,
+                                              style: GoogleFonts.rajdhani(
+                                                color: Color.fromARGB(
+                                                    255, 88, 87, 87),
+                                                fontSize: 15,
+                                              )),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 20),
                                             child: Container(
                                               height: 35,
-                                              width: 85,
+                                              width: 65,
                                               decoration: BoxDecoration(
                                                   boxShadow: [
                                                     BoxShadow(
                                                         color: Colors.black,
                                                         blurRadius: 2.2,
                                                         spreadRadius: 0.0,
-                                                        offset: Offset(1.0, 1.0))
+                                                        offset:
+                                                            Offset(1.0, 1.0))
                                                   ],
-                                                  color: const Color.fromARGB(
-                                                      255, 255, 17, 0),
+                                                  color: Color.fromARGB(
+                                                      255, 255, 165, 0),
                                                   borderRadius:
                                                       BorderRadius.circular(5)),
                                               child: Center(
-                                                  child: Text("Delete",
-                                                      style: GoogleFonts.rajdhani(
-                                                          color: Color.fromARGB(
-                                                              255, 255, 255, 255),
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w600))),
+                                                  child: Text("Edit",
+                                                      style:
+                                                          GoogleFonts.rajdhani(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      255,
+                                                                      255,
+                                                                      255),
+                                                              fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600))),
                                             ),
-                                          onTap: () {
-                                            // 
-                                            // 
-                                            // 
-                                            // 
-                                            // 
-                                            // 
-                                            // 
-                                            // 
-
-                                          },),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20, left: 15),
+                                            child: GestureDetector(
+                                              child: Container(
+                                                height: 35,
+                                                width: 85,
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black,
+                                                          blurRadius: 2.2,
+                                                          spreadRadius: 0.0,
+                                                          offset:
+                                                              Offset(1.0, 1.0))
+                                                    ],
+                                                    color: const Color.fromARGB(
+                                                        255, 255, 17, 0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                child: Center(
+                                                    child: Text("Delete",
+                                                        style: GoogleFonts
+                                                            .rajdhani(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        255),
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600))),
+                                              ),
+                                              onTap: () {
+                                                //
+                                                //
+                                                //
+                                                //
+                                                DiaryDeletFunction();
+                                                //
+                                                //
+                                                //
+                                                //
+                                              },
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      );}
-                     , itemCount: datas.length,
+                        );
+                      },
+                      itemCount: datas.length,
                     ))
 
                 //
@@ -366,12 +384,11 @@ var idDIary="";
             ));
   }
 
-
-// 
-// 
+//
+//
 //      DIARY DATA GETTING API
-// 
-// 
+//
+//
   void getDiaryDetaills() async {
     final result = await Apiclass().myDiariyApi();
     setState(() {
@@ -380,13 +397,11 @@ var idDIary="";
     });
   }
 
-
-
-// 
-// 
+//
+//
 //      DIARY POSTING API
-// 
-// 
+//
+//
 
   void postDiaryData() async {
     print("7777777777777777777777777777777 function  ");
@@ -397,42 +412,48 @@ var idDIary="";
     } else if (Note.isEmpty) {
       showErrorMessage("Enter note");
     } else {
-      final formmddata = FormData.fromMap({ "id":idDIary,
-        "date": Date,
-        "note":note});
+      final formmddata =
+          FormData.fromMap({"id": idDIary, "date": Date, "note": Note});
       print("777777777777776666666666666666 function $formmddata");
       final result = await Apiclass().DiaryPostApi(formmddata);
       print("77777777777777722222222222222 function $result ");
       if (result != null) {
-         print("77777777777777775555555555555 function ${result.status} ");
-    
-          showSuccessMessage("Done");
-          Navigator.pop(context);
-        
-      }else {
-         print("77777777777777775555555555555 function result us  null  ");
+        print("77777777777777775555555555555 function ${result.status} ");
+
+        showSuccessMessage("Done");
+        Navigator.pop(context);
+      } else {
+        print("77777777777777775555555555555 function result us  null  ");
       }
       print("77777777777777775555555555555 function $result ");
-
-      
     }
   }
 
-
-
-// 
-// 
+//
+//
 //      DIARY DELETING API
 
-// 
-// 
-void DiaryDeletFunction()async{
-  final ID=  datas[index].id.toString();
+//
+//
+// 114 IdDiary 
+// 272 botton
+// 151 declare from data
+
+
+  void DiaryDeletFunction() async {
+
+    final formmdata = FormData.fromMap({"diary_id": idDIary});
+print("9999999999999 idDiary 666666666666$idDIary");
+    final result = await Apiclass().DiaryDeleteApi(formmdata);
+    print("999999999999999999999999999${result}");
+    if (result != null) {
+      showSuccessMessage(result.message);
+    } else {
+      showErrorMessage("operation failed");
+    }
+  }
+
   
-
-}
-
-
 
   void showErrorMessage(String message) {
     MotionToast.error(
@@ -464,13 +485,10 @@ void DiaryDeletFunction()async{
   }
 }
 
-
-
-
-// 
-// 
-// 
+//
+//
+//
 // ID store in variable  ,continue Delet Diary Post
-// 
-// 
-// 
+//
+//
+//
