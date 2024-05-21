@@ -20,6 +20,7 @@ class DiaryPage extends StatefulWidget {
 class _DiaryPageState extends State<DiaryPage> {
   var datas = [];
   var note = [];
+  // var ID=  datas["id"].toString();
 var idDIary="";
   var DairyDatecontroller = TextEditingController();
   var DairyNotecontroller = TextEditingController();
@@ -108,7 +109,10 @@ var idDIary="";
                     width: MediaQuery.of(context).size.width,
                     color: Color.fromARGB(255, 234, 234, 234),
                     child: ListView.builder(
-                      itemBuilder: (context, index) => Padding(
+                      
+                      itemBuilder: (context, index) {
+                      
+                      Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           height: 140,
@@ -219,30 +223,42 @@ var idDIary="";
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 20, left: 15),
-                                          child: Container(
-                                            height: 35,
-                                            width: 85,
-                                            decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      color: Colors.black,
-                                                      blurRadius: 2.2,
-                                                      spreadRadius: 0.0,
-                                                      offset: Offset(1.0, 1.0))
-                                                ],
-                                                color: const Color.fromARGB(
-                                                    255, 255, 17, 0),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            child: Center(
-                                                child: Text("Delete",
-                                                    style: GoogleFonts.rajdhani(
-                                                        color: Color.fromARGB(
-                                                            255, 255, 255, 255),
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w600))),
-                                          ),
+                                          child: GestureDetector(
+                                            child: Container(
+                                              height: 35,
+                                              width: 85,
+                                              decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Colors.black,
+                                                        blurRadius: 2.2,
+                                                        spreadRadius: 0.0,
+                                                        offset: Offset(1.0, 1.0))
+                                                  ],
+                                                  color: const Color.fromARGB(
+                                                      255, 255, 17, 0),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              child: Center(
+                                                  child: Text("Delete",
+                                                      style: GoogleFonts.rajdhani(
+                                                          color: Color.fromARGB(
+                                                              255, 255, 255, 255),
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w600))),
+                                            ),
+                                          onTap: () {
+                                            // 
+                                            // 
+                                            // 
+                                            // 
+                                            // 
+                                            // 
+                                            // 
+                                            // 
+
+                                          },),
                                         )
                                       ],
                                     )
@@ -252,8 +268,8 @@ var idDIary="";
                             ],
                           ),
                         ),
-                      ),
-                      itemCount: datas.length,
+                      );}
+                     , itemCount: datas.length,
                     ))
 
                 //
@@ -350,6 +366,12 @@ var idDIary="";
             ));
   }
 
+
+// 
+// 
+//      DIARY DATA GETTING API
+// 
+// 
   void getDiaryDetaills() async {
     final result = await Apiclass().myDiariyApi();
     setState(() {
@@ -357,6 +379,14 @@ var idDIary="";
       // print("0000000000000000000000${}");
     });
   }
+
+
+
+// 
+// 
+//      DIARY POSTING API
+// 
+// 
 
   void postDiaryData() async {
     print("7777777777777777777777777777777 function  ");
@@ -388,6 +418,22 @@ var idDIary="";
     }
   }
 
+
+
+// 
+// 
+//      DIARY DELETING API
+
+// 
+// 
+void DiaryDeletFunction()async{
+  final ID=  datas[index].id.toString();
+  
+
+}
+
+
+
   void showErrorMessage(String message) {
     MotionToast.error(
       title: Text("Error"),
@@ -417,3 +463,14 @@ var idDIary="";
     ).show(context);
   }
 }
+
+
+
+
+// 
+// 
+// 
+// ID store in variable  ,continue Delet Diary Post
+// 
+// 
+// 
