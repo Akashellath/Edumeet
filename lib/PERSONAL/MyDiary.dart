@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:edumeet_project_irohub/APIs&URLs/ApiClass.dart';
 import 'package:edumeet_project_irohub/CHAT/chatPage.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DiaryEditModel.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -196,36 +197,48 @@ class _DiaryPageState extends State<DiaryPage> {
                                           Padding(
                                             padding:
                                                 const EdgeInsets.only(top: 20),
-                                            child: Container(
-                                              height: 35,
-                                              width: 65,
-                                              decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black,
-                                                        blurRadius: 2.2,
-                                                        spreadRadius: 0.0,
-                                                        offset:
-                                                            Offset(1.0, 1.0))
-                                                  ],
-                                                  color: Color.fromARGB(
-                                                      255, 255, 165, 0),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                  child: Text("Edit",
-                                                      style:
-                                                          GoogleFonts.rajdhani(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      255,
-                                                                      255,
-                                                                      255),
-                                                              fontSize: 20,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600))),
+                                            child: GestureDetector(onTap: () {
+                                              // 
+                                              // 
+                                              // 
+                                           
+                                          
+                                             DairyEditFuntion();
+                                              // 
+                                              // 
+                                              // 
+                                            },
+                                              child: Container(
+                                                height: 35,
+                                                width: 65,
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black,
+                                                          blurRadius: 2.2,
+                                                          spreadRadius: 0.0,
+                                                          offset:
+                                                              Offset(1.0, 1.0))
+                                                    ],
+                                                    color: Color.fromARGB(
+                                                        255, 255, 165, 0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(5)),
+                                                child: Center(
+                                                    child: Text("Edit",
+                                                        style:
+                                                            GoogleFonts.rajdhani(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        255,
+                                                                        255,
+                                                                        255),
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600))),
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -384,6 +397,90 @@ class _DiaryPageState extends State<DiaryPage> {
             ));
   }
 
+
+
+
+
+
+// 
+// 
+// 
+// 
+// 
+//   DIARY EDIT ALERT BOX
+// 
+// 
+// 
+Future<dynamic> DiaryEditAlertBox(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (alert) => AlertDialog(
+              title: Row(
+                children: [
+                  Text("Add Diaries"),
+                  Spacer(),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.close))
+                ],
+              ),
+              //  insetPadding: EdgeInsets.zero,
+              content: Container(
+                height: 300,
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: DairyDatecontroller,
+                        decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  selectDairyDate(context);
+                                },
+                                icon: Icon(Icons.date_range_outlined)),
+                            hintText: "Enter Date",
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: DairyNotecontroller,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 6,
+                        minLines: 1,
+                        decoration: InputDecoration(
+                            hintText: "Enter Note",
+                            border: OutlineInputBorder()),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 55,
+                        width: 100,
+                        child: FloatingActionButton(
+                          backgroundColor: Color.fromARGB(255, 49, 51, 50),
+                          child: Text("Update",
+                              style: GoogleFonts.rajdhani(
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold)),
+                          onPressed: () {
+                            postDiaryData();
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ));
+  }
 //
 //
 //      DIARY DATA GETTING API
@@ -453,6 +550,38 @@ print("9999999999999 idDiary 666666666666$idDIary");
     }
   }
 
+
+// 
+// 206 button
+// 414 alert box
+// 
+//    DIARY EDIT FUNCTION 
+// 
+
+void DairyEditFuntion()async{
+  final Date = DairyDatecontroller.text;
+    final Note = DairyNotecontroller.text;
+    if (Date.isEmpty) {
+      showErrorMessage("Enter Date");
+    } else if (Note.isEmpty) {
+      showErrorMessage("Enter note");
+    } else {
+      final formData22 =
+          FormData.fromMap({"id": idDIary, });
+      
+      final result = await Apiclass().DairyEditApi(formData22);
+      
+      if (result != null) {
+      
+
+        showSuccessMessage("Done");
+        Navigator.pop(context);
+      } else {
+       
+      }
+    
+    }
+}
   
 
   void showErrorMessage(String message) {

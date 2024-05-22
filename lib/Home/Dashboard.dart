@@ -75,6 +75,7 @@ class _profilePaegState extends State<profilePaeg> {
   String Dateofbirth = "";
   String divsn = "";
   String parentnam = "";
+  String Dobirth="";
   String code = "";
   String parent = "";
   String profileimaageUrl = "";
@@ -233,7 +234,7 @@ class _profilePaegState extends State<profilePaeg> {
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)),
-                                          Text("7",
+                                          Text(" 7",
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -256,7 +257,7 @@ class _profilePaegState extends State<profilePaeg> {
                                     children: [
                                       Row(
                                         children: [
-                                          Text("   Division-",
+                                          Text("Division-  ",
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)
@@ -276,11 +277,11 @@ class _profilePaegState extends State<profilePaeg> {
                                           SizedBox(
                                             width: 5,
                                           ),
-                                          Text(" DOB:",
+                                          Text("DOB: ",
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)),
-                                          Text(Dateofbirth,
+                                          Text(Dobirth,
                                               style: GoogleFonts.rajdhani(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500))
@@ -458,6 +459,7 @@ class _profilePaegState extends State<profilePaeg> {
       parentnam = result.student.parents.firstName +
           " " +
           result.student.parents.lastName;
+          Dobirth=result.student.dob;
 
       // parentnam=result.student.parents.imageUrl;
       profileimaageUrl = result.student.profileImageUrl;

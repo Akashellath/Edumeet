@@ -4,6 +4,7 @@ import 'package:edumeet_project_irohub/MODELCLASS/DairyPostModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DashboardModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiariesModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/DiaryDeletePost.dart';
+import 'package:edumeet_project_irohub/MODELCLASS/DiaryEditModel.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EditProfilrname.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/Editprofileimg.dart';
 import 'package:edumeet_project_irohub/MODELCLASS/EventPageModel.dart';
@@ -263,7 +264,21 @@ Future<DairyDeletPost?>DiaryDeleteApi( FormData formData)async{print("9999999999
   print("999999999999999 RESULT 7777777$result");
   return DairyDeletPost.fromJson((result.data));
 }
- 
 
+
+
+
+Future<DairyEditPost?>DairyEditApi(FormData formData)async{
+  SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+  var ttokkeen=sharedPreferences.getString("Token");
+  final result= await dio.post(url.DiaryEditUrl,data: formData,options: Options(headers: {
+ "Content": "application/json",
+      "Accepts" : "application/json",
+      "Authorization": "Bearer $ttokkeen"
+   
+  }));
+}
+ 
+ 
 
 }
