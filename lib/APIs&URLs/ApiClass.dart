@@ -277,6 +277,8 @@ Future<DairyEditPost?>DairyEditApi(FormData formData)async{
       "Authorization": "Bearer $ttokkeen"
    
   }));
+  print("88888888888888888888$result");
+  return DairyEditPost.fromJson(result.data);
 }
  
  

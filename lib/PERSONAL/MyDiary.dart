@@ -202,8 +202,8 @@ class _DiaryPageState extends State<DiaryPage> {
                                               // 
                                               // 
                                            
-                                          
-                                             DairyEditFuntion();
+                                          DiaryEditAlertBox(context);
+                                             
                                               // 
                                               // 
                                               // 
@@ -470,8 +470,11 @@ Future<dynamic> DiaryEditAlertBox(BuildContext context) {
                                   color: Color.fromARGB(255, 255, 255, 255),
                                   fontSize: 19,
                                   fontWeight: FontWeight.bold)),
-                          onPressed: () {
-                            postDiaryData();
+                          onPressed: () {print("444444444444444444444444444444444444444444ff");
+
+                            DairyEditFuntion();
+
+                              print("11111111111111111111111111 kk");
                           },
                         ),
                       ),
@@ -558,7 +561,7 @@ print("9999999999999 idDiary 666666666666$idDIary");
 //    DIARY EDIT FUNCTION 
 // 
 
-void DairyEditFuntion()async{
+void DairyEditFuntion()async{ print("22222222222222222222222 Diary Edit ");
   final Date = DairyDatecontroller.text;
     final Note = DairyNotecontroller.text;
     if (Date.isEmpty) {
@@ -568,10 +571,11 @@ void DairyEditFuntion()async{
     } else {
       final formData22 =
           FormData.fromMap({"id": idDIary, });
-      
+      print("555555555555555555$formData22");
       final result = await Apiclass().DairyEditApi(formData22);
-      
+      print("33333333333333333333 $result");
       if (result != null) {
+
       
 
         showSuccessMessage("Done");
